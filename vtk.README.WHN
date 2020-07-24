@@ -1,0 +1,33 @@
+WHN 10/5/08.
+
+Following http://www.vtk.org/Wiki/Cocoa_VTK.
+
+mkdir VTKBuild
+cd VTKBuild
+cmake ../VTK
+
+Edit CMakeCache.txt
+VTK_USE_CARBON:BOOL=OFF
+VTK_USE_COCOA:BOOL=ON
+VTK_USE_X:BOOL=OFF
+CMAKE_OSX_ARCHITECTURES:STRING=i386
+CMAKE_INSTALL_PREFIX=/usr/local
+VTK_WRAP_PYTHON:BOOL=ON
+BUILD_SHARED_LIBS:BOOL=ON
+VTK_USE_PARALLEL:BOOL=ON
+
+cmake ../VTK
+cmake ../VTK
+
+make
+make install
+
+cd Wrapping/Python
+sudo python setup.py install
+
+cd /usr/local/lib/vtk5.2
+sudo mv libvtk* ../
+
+NOTE: If an existing vtk implementation has been installed under Python,
+the lib/site-packages/vtk directory may need to be removed prior to
+installing the wrappers.

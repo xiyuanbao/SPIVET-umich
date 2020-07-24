@@ -1,0 +1,13 @@
+The files contained in this directory demonstrate the primary means of
+interacting with SPIVET to reduce raw images into useable flow field
+variables.  The files are listed below in the order they are generally run.
+
+- bldsched.py: This recipe takes a list of image files from an experiment
+  and generates EFRMLST files which the next recipe uses to actually
+  compute flow field variables.
+
+- precipe.py: This recipe is the workhorse.  It is responsible for
+  converting raw images into flow field variables.
+
+- sync.py: The sync.py recipe is an example of post-processing that can
+  be done to refine the results from precipe. 

@@ -1,0 +1,11 @@
+The files contained in this directory are example (S)PIV scripts that
+can be run serially.  
+
+- pivsfdrv: Stereo PIV driver script.  Reads a file FRMLST that contains the
+  paths to four image frames (2 per camera) and computes stereo flow.  
+  FRMLST should contain image paths on four lines with the following order:
+      IMAGE_CAM0_FRAME0
+      IMAGE_CAM0_FRAME1
+      IMAGE_CAM1_FRAME0
+      IMAGE_CAM1_FRAME1
+                    

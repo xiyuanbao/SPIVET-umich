@@ -1,0 +1,141 @@
+SPIVET is a Python package for stereoscopic particle image velocimetry and
+thermometry (by way of thermocrhomic liquid crystals).  
+
+-----
+
+SPIVET is Copyright (C) 2007-2010 William Newsome
+ 
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details, published at 
+http://www.gnu.org/copyleft/gpl.html
+
+A copy of the SPIVET GPL license is provided in the LICENSE.SPIVET file.
+
+-----
+
+SPIVET includes the ExodusII library copyrighted by Sandia Corporation.
+See the COPYRIGHT.ExodusII file for the ExodusII copyright, license,
+and disclaimers.
+
+-----
+
+INTRODUCTION
+
+The package is composed of several modules contained in four packages:
+
+1) spivet - The spivet namespace is the highest level namespace.  It contains
+   the remaining three packages as well as the steps module.  To utilize the
+   the steps module, one would need a Python import statement similar to
+       from spivet import steps
+
+2) pivlib - The namespace for the PivLIB package.  Exposed functions within
+   the PivLIB package can be utilized by a Python import statement
+       from spivet import pivlib
+   The PivLIB package (as well as others) contains several, private functions 
+   that are not imported into the pivlib namespace itself, but are still 
+   available through an explicit import of the module in which they are 
+   defined.
+
+   For example, the ExodusII library interface is not exposed directly
+   through the PivLIB name space (ie, one cannot call the ExodusII function
+   ex_create() by typing pivlib.ex_create()).  Instead, the exodusII module
+   must be imported directly
+       from spivet.pivlib import exodusII
+       exodusII.ex_create(...)
+       
+3) tlclib - Namespace for the TlcLIB package.  Exposed functions within
+   the PivLIB package can be utilized by a Python import statement
+       from spivet import tlclib
+       
+4) flolib - Namespace for the FloLIB pakage.  Exposed functions within
+   the PivLIB package can be utilized by a Python import statement
+       from spivet import flolib
+       
+-----
+
+DEPENDENCIES
+
+SPIVET requires the following third-party software to be installed prior
+to installing SPIVET:
+
+* Python 2.5 or 2.6.  Python versions 3.0 and higher have not been tested
+  and syntax incompatibilities are almost certainly present.  See Python's
+  website for more information on the syntax changes between Python 2 and 3.
+  
+* NumPy, http://numpy.scipy.org.  Follow NumPy's installation instructions.
+
+* SciPy, http://www.scipy.org.  Follow SciPy's installation instructions.
+
+* matplotlib (also known as Pylab), http://matplotlib.sourceforge.net.
+  Follow matplotlib's installation instructions.
+
+* Python Imaging Library (PIL), http://www.pythonware.com/products/pil.
+  Follow PIL's installation instructions.
+
+* NetCDF, http://www.unidata.ucar.edu/software/netcdf.  Follow NetCDF's
+  installation instructions.
+
+* VTK, http://www.vtk.org.  Building VTK can be tricky.  It's recommended
+  that pre-built binaries be obtained.  Just be sure that the Python
+  bindings are included.  To test their availability, launch an interactive
+  session of Python and type
+      import vtk
+  If no errors are generated, the user should be ok.
+
+* NetWorkSpaces for Python, http://nws-py.sourceforge.net.  The NetWorkSpaces
+  server must be installed on one machine.  The server machine does not have
+  to be a worker node.  An install of the server also requires that 
+  Twisted and the Zope Interfaces be installed on the server machine (see 
+  NetWorkSpaces documentation for more details).  Note that NetWorkSpaces 
+  exposes a service on the server machine.  Be sure to understand the 
+  security implications as discussed in the NetWorkSpaces documentation.
+  
+  After the server is installed, the NWS client must be installed on
+  all worker nodes (along with SPIVET).  It is recommended that workers
+  be run using passwordless SSH as described in the NWS documentation.  
+  
+  When SPIVET is installed (see next section of this README), a file
+  named nwsconf.py.example will be installed in the user's home directory 
+  under the .spivet sub-directory.  Edit this file as necessary to identify
+  worker nodes and then rename the file to nwsconf.py.  The file also has 
+  some good tips on configuring NWS.  The example file will actually get 
+  installed on all worker nodes, however it only needs to be edited on the 
+  machine(s) from which the user intends to submit jobs.  The other copies 
+  on worker nodes can be ignored. 
+
+-----
+
+SPIVET INSTALLATION
+
+SPIVET has several dependencies that are detailed above.  Be sure these
+dependencies have been met. Then to install SPIVET, run 
+    python setup.py build
+    python setup.py install
+    
+Note, the latter command may need to be run as root.  SPIVET will need to 
+be installed on all worker nodes.  As detailed in the notes above for 
+NetWorkSpaces, be sure to edit the nwsconf.py.example file on the machine 
+that will be used to submit jobs after SPIVET installation.
+
+NOTE: Should the SPIVET build process fail due to headers or libraries not
+being found, set the necessary environment variables (CFLAGS and/or LDFLAGS)
+as needed and try again.
+
+-----
+
+TESTING THE INSTALLATION
+
+SPIVET includes a number of unit tests to check different aspects of
+the code and ensure it operating correctly.  These tests can be run
+following SPIVET installation by changing into the tests sub-directory of
+the source tree and executing
+    python run_tests.py
+    
+The full suite of tests can take a few minutes to run.
