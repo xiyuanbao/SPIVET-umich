@@ -32,8 +32,8 @@ Description:
 
 from spivet import pivlib
 from numpy import *
-import Image, sys
-
+import sys
+from PIL import Image
 # Set a small gap between objects of different refractive index.  This
 # ensures that the raytracer finds the different materials without
 # having an adverse impact on accuracy of the simulation.  Units are

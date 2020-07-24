@@ -44,7 +44,7 @@ from spivet import pivlib
 import pylab
 import math
 from numpy import *
-import Image
+from PIL import Image
 
 import os,sys
 

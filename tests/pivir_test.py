@@ -22,7 +22,7 @@ Description:
     intensity will break these tests.
 """
 from spivet import pivlib
-import Image
+from PIL import Image
 from numpy import *
 import hashlib, os, unittest, StringIO, sys
 from os import path

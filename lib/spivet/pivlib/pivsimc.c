@@ -1174,7 +1174,7 @@ SimCylindricalSurf_intersect(SimCylindricalSurf *self,PyObject *args) {
   otv   = PyList_New(0);
   hiflg = 0;
   for ( i = 0; i < 2; i++ ) {
-    if ( ptv[i] < 0. )
+    if ( ptv[i] < PIVSIMC_DEPS )
       continue;
 
     // Get planar coordinate of intersection and solve for the 3D t.
@@ -1600,7 +1600,7 @@ SimRectPlanarSurf_intensity(SimRectPlanarSurf *self,PyObject *args) {
     if ( (fpix[i] < 1.) || (fpix[i] >= self->npc[i] -1) )
       return Py_BuildValue("d",0.);
   }
-
+  PyRun_SimpleString("import sys;sys.path.append('/home/xbao/.conda/envs/piv1.0/lib/python2.7/site-packages/spivet/pivlib')");
   mod     = PyImport_ImportModule("pivutil");
   pxshift = PyObject_GetAttrString(mod,"pxshift");
 

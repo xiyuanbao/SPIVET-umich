@@ -26,9 +26,11 @@ Description:
 #include <math.h>
 #include <stdlib.h>
 #include <float.h>
-#include <clapack.h>
+#include <mkl_lapack.h>
+typedef MKL_INT lpk_int;
+//#include <clapack.h>
 
-typedef __CLPK_integer lpk_int;
+//typedef __CLPK_integer lpk_int;
 
 //
 // WORKER FUNCTION PROTOTYPES

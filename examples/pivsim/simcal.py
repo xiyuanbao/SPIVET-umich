@@ -34,7 +34,7 @@ Description:
 
 from spivet import pivlib
 from numpy import *
-import Image
+from PIL import Image
 
 # Set a small gap between objects of different refractive index.  This
 # ensures that the raytracer finds the different materials without

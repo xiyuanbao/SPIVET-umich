@@ -20,7 +20,8 @@ Description:
 
 from spivet import pivlib
 from numpy import *
-import os, vtk, Image, hashlib
+import os, vtk, hashlib
+from PIL import Image
 import unittest, StringIO, sys
 from os import path
 
