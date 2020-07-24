@@ -1,0 +1,5 @@
+The files contained in this directory are example post-processing scripts.
+These scripts take output from SPIV/TLC processing and compute additional
+flow variables, advect passive tracers, etc.
+
+- procdata: Computes flow variables and advects passive tracers.

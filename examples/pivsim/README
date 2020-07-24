@@ -1,0 +1,23 @@
+The files contained in this directory are example scripts for the pivsim
+module.  
+
+- CalTarget2.png: Input image of the grid-like calibration target.  The
+  image will be bitmapped onto a rectangular surface that is 'inserted'
+  into the syrup.
+
+- simcal.py: Runs the raytracer to generate a sequence of images of a
+  grid-like target.  simcal should be run first, and then photogrammetric
+  calibration performed using the example calibration script (located
+  elsewhere).  After photogrammetric calibration is complete, simb.py
+  can be run to do an experiment simulation.
+
+- SimTarget.png: A starscape image that simulates a 2D view of a real
+  PIV experiment.  Just as with the CalTarget2.png image, SimTarget.png
+  will be bitmapped onto a rectangular surface that is immersed in the
+  syrup.
+
+- simb.py: Driver script that generates 4 images (two for each camera) of
+  the SimTarget moving a known distance.  These images can then be fed
+  to the example pivsfdrv.py script (located elsewhere) to compute
+  the uniform displacement field.
+

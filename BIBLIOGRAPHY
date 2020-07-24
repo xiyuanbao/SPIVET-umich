@@ -1,0 +1,244 @@
+%% Bibliography of sources referenced in the code.
+
+@book{Akenine-Moller:2002,
+	Author = {Akenine-Moller, T. and Haines, E.},
+	Edition = {2nd},
+	Publisher = {AK Peters},
+	Title = {Real-Time Rendering},
+	Year = {2002}}
+	
+@article{Belongie:2002,
+	Author = {Belongie, Serge and Malik, Jitendra and Puzicha, Jan},
+	Journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	Number = {24},
+	Pages = {509-522},
+	Title = {Shape matching and object recognition using shape contexts},
+	Volume = {24},
+	Year = {2002}}	
+
+@article{Bookstein:1989,
+	Author = {Bookstein, F. L.},
+	Journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	Month = {Jun},
+	Number = {6},
+	Pages = {567--585},
+	Title = {PRINCIPAL WARPS: THIN-PLATE SPLINES AND THE DECOMPOSITION OF DEFORMATIONS},
+	Volume = {11},
+	Year = {1989}}
+
+@article{Brown:1992,
+	Author = {Brown, Lisa Gottesfeld},
+	Journal = {ACM Computing Surveys},
+	Number = {4},
+	Pages = {325-376},
+	Title = {A survey of image registration techniques},
+	Volume = {24},
+	Year = {1992}}
+	
+@article{Chui:2003,
+	Author = {Chui, H. L. and Rangarajan, A.},
+	Journal = {Computer Vision and Image Understanding},
+	Month = {Feb-Mar},
+	Number = {2-3},
+	Pages = {114--141},
+	Title = {A new point matching algorithm for non-rigid registration},
+	Volume = {89},
+	Year = {2003}}
+	
+@article{Dabiri:1991,
+	Author = {Dabiri, Dana and Gharib, Morteza},
+	Journal = {Experiments in Fluids},
+	Pages = {77-86},
+	Title = {Digital particle image thermometry: the method and implementation},
+	Volume = {11},
+	Year = {1991}}
+
+@article{Duda:1975,
+	Author = {Duda, Richard O. and Hart, Peter E.},
+	Journal = {Communications of the {ACM}},
+	Number = {1},
+	Pages = {11-15},
+	Title = {Use of the {H}ough transformation to detect lines and curves in pictures},
+	Volume = {15},
+	Year = {1975}}
+
+@article{Haller:2001,
+	Author = {Haller, G.},
+	Journal = {Physica D},
+	Month = {Mar},
+	Number = {4},
+	Pages = {248--277},
+	Title = {Distinguished material surfaces and coherent structures in three-dimensional fluid flows},
+	Volume = {149},
+	Year = {2001}}
+
+@article{Haller:2002,
+	Author = {Haller, G.},
+	Journal = {Physics of Fluids},
+	Month = {Jun},
+	Number = {6},
+	Pages = {1851--1861},
+	Title = {Lagrangian coherent structures from approximate velocity data},
+	Volume = {14},
+	Year = {2002}}
+
+@inproceedings{Heikkila:1997,
+	Author = {Heikkila, J. and Silven, Olli},
+	Booktitle = {1997 IEEE Computer Society Conference on Computer Vision and Pattern Recognition},
+	Pages = {1106-1112},
+	Title = {A four-step camera calibration procedure with implicit image correction},
+	Year = {1997}}
+
+@book{Goldstein:1980,
+	Author = {Goldstein, Herbert},
+	Edition = {2nd},
+	Publisher = {Addison Wesley},
+	Title = {Classical Mechanics},
+	Year = {1980}}
+
+@book{Gonzalez:2002,
+	Author = {Gonzalez, Rafael C. and Woods, Richard E.},
+	Edition = {2},
+	Publisher = {Prentice Hall},
+	Title = {Digital Image Processing},
+	Year = {2002}}
+
+@article{Goodin:1980,
+	Author = {Goodin, W. R. and {McR}ae, G. J. and Seinfeld, J. H.},
+	Journal = {Journal of Applied Meteorology},
+	Number = {1},
+	Pages = {98--108},
+	Title = {OBJECTIVE ANALYSIS TECHNIQUE FOR CONSTRUCTING THREE-DIMENSIONAL URBAN-SCALE WIND FIELDS},
+	Volume = {19},
+	Year = {1980}}
+
+@article{Jonker:1987,
+	Author = {Jonker, R. and Volgenant, A.},
+	Journal = {COMPUTING},
+	Number = {4},
+	Pages = {325--340},
+	Title = {A SHORTEST AUGMENTING PATH ALGORITHM FOR DENSE AND SPARSE LINEAR ASSIGNMENT PROBLEMS},
+	Volume = {38},
+	Year = {1987}}
+
+@article{Kierkegaard:1992,
+	Author = {Kierkegaard, P\"{a}r},
+	Journal = {Machine Vision and Applications},
+	Pages = {249-263},
+	Title = {A method for detection of circular arcs based on the {H}ough transform},
+	Volume = {5},
+	Year = {1992}}
+
+@inproceedings{Ledley:1990,
+	Author = {Ledley, R. S. and Buas, M. and Golab, T. J.},
+	Booktitle = {Proceedings of the 10th International Conference on Pattern Recognition},
+	Pages = {791-795},
+	Title = {Fundamentals of true-color image processing},
+	Volume = {1},
+	Year = {1990}}
+
+@inproceedings{Lucas:1981,
+	Author = {Lucas, Bruce D. and Kanade, Takeo},
+	Booktitle = {Proceedings of the 7th International Joint Conference on Artifical Intelligence},
+	Pages = {674-679},
+	Title = {An iterative image registration technique with an application to stereo vision},
+	Year = {1981}}
+	
+@article{Okamoto:1995,
+	Author = {Okamoto, K. and Hassan, Y. A. and Schmidl, W. D.},
+	Journal = {Experiments in Fluids},
+	Month = {Sep},
+	Pages = {342--347},
+	Title = {NEW TRACKING ALGORITHM FOR PARTICLE IMAGE VELOCIMETRY},
+	Volume = {19},
+	Year = {1995}}
+
+@book{Ramsay:2005,
+	Author = {Ramsay, J. O. and Silverman, B. W.},
+	Edition = {2nd},
+	Publisher = {Springer},
+	Title = {Functional Data Analysis},
+	Year = {2005}}
+
+@article{Russell:1995,
+	Author = {Russell, W. S.},
+	Journal = {Applied Numerical Mathematics},
+	Month = {May},
+	Number = {2},
+	Pages = {129--171},
+	Title = {POLYNOMIAL INTERPOLATION SCHEMES FOR INTERNAL DERIVATIVE DISTRIBUTIONS ON STRUCTURED GRIDS},
+	Volume = {17},
+	Year = {1995}}	
+
+@article{Shadden:2005,
+	Author = {Shadden, S. C. and Lekien, F. and Marsden, J. E.},
+	Journal = {Physica D},
+	Month = {Dec},
+	Number = {3-4},
+	Pages = {271--304},
+	Title = {Definition and properties of {L}agrangian coherent structures from finite-time {L}yapunov exponents in two-dimensional aperiodic flows},
+	Volume = {212},
+	Year = {2005}}
+
+@article{Sutton:1994,
+	Author = {Sutton, R. T. and Maclean, H. and Swinbank, R. and O'Neill, A. and Taylor, F. W.},
+	Journal = {Journal of the Atmospheric Sciences},
+	Month = {Oct},
+	Number = {20},
+	Pages = {2995--3005},
+	Title = {HIGH-RESOLUTION STRATOSPHERIC TRACER FIELDS ESTIMATED FROM SATELLITE OBSERVATIONS USING {L}AGRANGIAN TRAJECTORY CALCULATIONS},
+	Volume = {51},
+	Year = {1994}}
+	
+@article{Tackley:2003,
+	Author = {Tackley, P. J. and King, S. D.},
+	Journal = {Geochemistry, Geophysics, Geosystems},
+	Month = {Apr},
+	Pages = {8302},
+	Title = {Testing the tracer ratio method for modeling active compositional fields in mantle convection simulations},
+	Volume = {4},
+	Year = {2003}}
+
+@book{Trucco:1998,
+	Author = {Trucco, Emanuele and Verri, Alessandro},
+	Publisher = {Prentice Hall},
+	Title = {Introductory Techniques for 3-D Computer Vision},
+	Year = {1998}}
+
+@article{Tsai:1987,
+	Author = {Tsai, R. Y.},
+	Journal = {IEEE Journal of Robotics and Automation},
+	Number = {4},
+	Pages = {323-344},
+	Title = {A versatile camera calibration technique for high-accuracy 3D machine vision metrology using off-the-shelf {TV} cameras and lenses},
+	Volume = {RA-3},
+	Year = {1987}}
+
+@article{Weng:1992,
+	Author = {Weng, Juyang},
+	Journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	Number = {10},
+	Pages = {965-980},
+	Title = {Camera calibration with distortion models and accuracy evaluation},
+	Volume = {14},
+	Year = {1992}}
+	
+@article{Westerweel:2005,
+	Author = {Westerweel, J. and Scarano, F.},
+	Journal = {Experiments in Fluids},
+	Month = {Dec},
+	Number = {6},
+	Pages = {1096--1100},
+	Title = {Universal outlier detection for {PIV} data},
+	Volume = {39},
+	Year = {2005}}
+
+@article{Willert:2006,
+	Author = {Willert, C. E.},
+	Journal = {Experiments in Fluids},
+	Month = {Jul},
+	Number = {1},
+	Pages = {135--143},
+	Title = {Assessment of camera models for use in planar velocimetry calibration},
+	Volume = {41},
+	Year = {2006}}

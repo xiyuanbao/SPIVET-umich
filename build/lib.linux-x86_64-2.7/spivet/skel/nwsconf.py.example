@@ -1,0 +1,74 @@
+# This file contains configuration data for NetworkSpaces.  It must have
+# a Python compatible syntax.  Edit the file as necessary, then rename
+# to nwsconf.py
+
+# nwsHost: NWS server hostname/IP address.
+nwsHost = '192.168.0.5' 
+
+# remoteUser: Remote user name for workers.
+#
+# Remote workers are launched using passwordless ssh if sleighLauch = 'sshcmd'.
+# It is recommended that remoteUser be a limited privilege account with a 
+# user name that differs from the account creating this configuration file.  
+# Consult the NetworkSpaces manual for details on setting up passwordless ssh.
+#
+# In addition to setting up passwordless ssh as described in the NWS manual,
+# the user must also ensure that the python executable is in the 
+# non-interactive ssh path that is established when ssh is used to execute a
+# remote command (eg, ssh remoteUser@aNote someCommand).  Because the default,
+# non-interactive path is hardcoded into ssh, the python executable may not be
+# visible.  To check the ssh PATH run
+#    ssh remoteUser@aNode set
+# replacing remoteUser with the correct user name, and aNode with the correct
+# node name or IP address.  If the path to python is not in PATH as shown
+# running the above command, then the user must
+#     a) create a symbolic link to the python executable in a valid ssh PATH
+#     directory on each machine, or
+#     b) create a PATH entry in ~/.ssh/environment on each node (where ~
+#     points to the remoteUser home directory) and set PermitUserEnvironment 
+#     in sshd_config on each node.  See the man page for sshd_config for more 
+#     details. 
+remoteUser = 'gridworker'
+
+# sleighLaunch: Lauch method for Sleigh.
+#
+# Method of starting Sleigh workers.  Valid values are:
+#   'local'
+#   'sshcmd'
+# See the NetworkSpaces documentation on Sleigh for more information.
+sleighLaunch = 'sshcmd'
+
+# nodeList: List of remote machines to use for computation.
+#
+# If sleighLaunch = 'sshcmd', one worker will be created for each 
+# hostname/IP address in nodeList.  Therefore if the user wishes to fully 
+# utilize a multicore machine, nodeList should contain the hostname/IP 
+# address of that multicore machine n-times (where n is the number of cores).
+# Note: IP addresses are strings and should be quoted.
+#
+# nodeList is ignored if sleighLauch = 'local'.  Set workerCount instead.
+nodeList = [
+    '192.168.0.2',
+    '192.168.0.3'] 
+
+# workerCount: Number of local workers to use for computation.
+#
+# If sleighLaunch = 'local', then workerCount workers will be started and
+# used for the computation.  workerCount is ignored if sleighLaunch = 'sshcmd'.
+workerCount = 2
+
+# loadFactor: Multiplier for number of tasks to submit to workspace at a time.
+#
+# The number of tasks in the workspace will be loadFactor*len(nodeList) or
+# loadFactor*workerCount, depending upon the value of sleighLaunch.
+# Consult the NetworkSpaces manual documentation on the eachElem() function
+# for more information.
+loadFactor = 3
+
+# workingDir: Working directory for workers.
+#
+# The sleign workers will be initialized to work in this directory.  The
+# directory must exist on each node and the workers must have write access to 
+# the directory.
+workingDir = '~'
+

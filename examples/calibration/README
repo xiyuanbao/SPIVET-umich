@@ -1,0 +1,14 @@
+The files contained in this directory are the primary scripts used for
+photogrammetric and thermochromic calibration.
+
+- pivcpxdrv: Extracts photogrammetric calibration points.  Should be
+  run prior to pivpgcdrv.
+
+- pivpgcdrv: Performs photogrammetric calibration using the data extracted
+  from pivcpxdrv.
+  
+- tlccpxdrv: Extracts thermochromic calibration points.  Should be run prior
+  to tlctccdrv.
+  
+- tlctccdrv: Performs thermochromic calibration using the data extracted 
+  from tlccpxdrv.

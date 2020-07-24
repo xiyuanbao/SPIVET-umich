@@ -1,0 +1,39 @@
+gcc from att. research that you recommended
+
+fftw-3.3.1
+
+jpegsrc-v6b: after make install, do make install-lib, and make install-headers
+
+libpng-1.5.9
+
+freetype-2.4.8
+
+netcdf-4.1.3: I don't have hdf5 installed, so I had to disable that via a flag to configure.
+
+readline-6.2: ./configure -disable-shared
+
+install lapack (whatever the latest version is).
+
+atlas-3.8.4: don't build with make -j3 (just use make).  If fail with some error that a file isn't found, type make again.  
+
+python-2.7.2.  I built with --enable-framework.  That's the only flag passed to configure.
+
+Make sure /usr/local/bin is first in path (put
+    export PATH=/usr/local/bin:$PATH
+in your .profile file.  Then open a new terminal window.)
+
+nose-1.1.2
+
+install numpy-1.6.1, test (ignore failures on nan)
+
+export FFLAGS="-ff2c", install scipy-0.10.1, test.  There should be no failures that aren't already known.
+
+close out that terminal and open a new one.
+
+install PIL (Imaging-1.1.7).
+
+install matplotlib-1.1.0.  For this build, you need to first
+    cp setup.cfg.template setup.cfg
+then edit setup.cfg.  Under [directories], put
+    basedirlist = /usr /usr/local
+then build and install.

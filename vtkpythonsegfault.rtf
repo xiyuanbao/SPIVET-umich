@@ -1,0 +1,467 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf320
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 VTK- pivsimtest seg fault\
+\
+\
+Process:         Python [66795]\
+Path:            /Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python\
+Identifier:      Python\
+Version:         ??? (???)\
+Code Type:       X86-64 (Native)\
+Parent Process:  tcsh [66737]\
+\
+Date/Time:       2012-03-15 10:43:59.279 +0000\
+OS Version:      Mac OS X 10.7.3 (11D50)\
+Report Version:  9\
+\
+Interval Since Last Report:          226819 sec\
+Crashes Since Last Report:           63\
+Per-App Crashes Since Last Report:   13\
+Anonymous UUID:                      350D3E30-BE02-4DDE-8E4D-5034D41C4B6B\
+\
+Crashed Thread:  0  Dispatch queue: com.apple.main-thread\
+\
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)\
+Exception Codes: KERN_INVALID_ADDRESS at 0x0000000000000008\
+\
+VM Regions Near 0x8:\
+--> \
+    __TEXT                 0000000100000000-0000000100001000 [    4K] r-x/rwx SM=COW  /Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python\
+\
+Application Specific Information:\
+objc[66795]: garbage collection is OFF\
+\
+Thread 0 Crashed:: Dispatch queue: com.apple.main-thread\
+0   org.python.python             	0x000000010005ac37 PyObject_GetAttrString + 23\
+1   pivsimc.so                    	0x0000000102ad7d28 SimRectPlanarSurf_intensity + 632 (pivsimc.c:1605)\
+2   org.python.python             	0x000000010000c362 PyObject_Call + 98\
+3   org.python.python             	0x0000000100011360 PyObject_CallMethod + 240\
+4   pivsimc.so                    	0x0000000102ad4529 SimRefractiveObject_intensity + 185 (pivsimc.c:2055)\
+5   org.python.python             	0x000000010000c362 PyObject_Call + 98\
+6   org.python.python             	0x0000000100011360 PyObject_CallMethod + 240\
+7   pivsimc.so                    	0x0000000102ad8b51 SimEnv_image + 3393 (pivsimc.c:2659)\
+8   org.python.python             	0x00000001000c4d9d PyEval_EvalFrameEx + 22589\
+9   org.python.python             	0x00000001000c575f PyEval_EvalFrameEx + 25087\
+10  org.python.python             	0x00000001000c575f PyEval_EvalFrameEx + 25087\
+11  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+12  org.python.python             	0x000000010003d650 function_call + 176\
+13  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+14  org.python.python             	0x00000001000c10af PyEval_EvalFrameEx + 6991\
+15  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+16  org.python.python             	0x000000010003d650 function_call + 176\
+17  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+18  org.python.python             	0x000000010001d85d instancemethod_call + 333\
+19  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+20  org.python.python             	0x0000000100077faa slot_tp_call + 74\
+21  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+22  org.python.python             	0x00000001000c25b0 PyEval_EvalFrameEx + 12368\
+23  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+24  org.python.python             	0x000000010003d650 function_call + 176\
+25  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+26  org.python.python             	0x00000001000c10af PyEval_EvalFrameEx + 6991\
+27  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+28  org.python.python             	0x000000010003d650 function_call + 176\
+29  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+30  org.python.python             	0x000000010001d85d instancemethod_call + 333\
+31  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+32  org.python.python             	0x0000000100077faa slot_tp_call + 74\
+33  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+34  org.python.python             	0x00000001000c25b0 PyEval_EvalFrameEx + 12368\
+35  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+36  org.python.python             	0x000000010003d650 function_call + 176\
+37  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+38  org.python.python             	0x00000001000c10af PyEval_EvalFrameEx + 6991\
+39  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+40  org.python.python             	0x000000010003d650 function_call + 176\
+41  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+42  org.python.python             	0x000000010001d85d instancemethod_call + 333\
+43  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+44  org.python.python             	0x0000000100077faa slot_tp_call + 74\
+45  org.python.python             	0x000000010000c362 PyObject_Call + 98\
+46  org.python.python             	0x00000001000c25b0 PyEval_EvalFrameEx + 12368\
+47  org.python.python             	0x00000001000c575f PyEval_EvalFrameEx + 25087\
+48  org.python.python             	0x00000001000c68d6 PyEval_EvalCodeEx + 2118\
+49  org.python.python             	0x00000001000c69f6 PyEval_EvalCode + 54\
+50  org.python.python             	0x00000001000ebcfe PyRun_FileExFlags + 174\
+51  org.python.python             	0x00000001000ebfb9 PyRun_SimpleFileExFlags + 489\
+52  org.python.python             	0x000000010010296c Py_Main + 2940\
+53  org.python.python             	0x0000000100000e4a 0x100000000 + 3658\
+54  org.python.python             	0x0000000100000d51 0x100000000 + 3409\
+\
+Thread 0 crashed with X86 Thread State (64-bit):\
+  rax: 0x0000000000000000  rbx: 0x0000000000000000  rcx: 0x000000010e72b000  rdx: 0x000000010e700000\
+  rdi: 0x0000000000000000  rsi: 0x0000000102ad91e7  rbp: 0x00007fff5fbfc5c0  rsp: 0x00007fff5fbfc5a0\
+   r8: 0x00007fff5fbfbf1c   r9: 0x00007fff5fbfbf18  r10: 0x0000000000000081  r11: 0x000000010005d2c0\
+  r12: 0x000000010e758688  r13: 0x0000000000000001  r14: 0x0000000000000000  r15: 0x0000000000000000\
+  rip: 0x000000010005ac37  rfl: 0x0000000000010206  cr2: 0x0000000000000008\
+Logical CPU: 3\
+\
+Binary Images:\
+       0x100000000 -        0x100000fff +org.python.python (2.7.2 - 2.7.2) <908B9EDC-E716-3890-A7AE-BACCC944EC62> /Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python\
+       0x100003000 -        0x10016fff7 +org.python.python (2.7.2, [c] 2004-2011 Python Software Foundation. - 2.7.2) <926B63E7-4E06-3D10-BD6F-A128A2268B28> /Library/Frameworks/Python.framework/Versions/2.7/Python\
+       0x1002f0000 -        0x1002f4ff7 +_dotblas.so (??? - ???) <0668F73E-162F-3D6A-85C5-D826020E3632> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/_dotblas.so\
+       0x1002f7000 -        0x1002f8fff +cStringIO.so (??? - ???) <3EB9A6A0-9F3A-332D-B9C8-08C53A2776C8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/cStringIO.so\
+       0x1002fd000 -        0x1002fdfff +_bisect.so (??? - ???) <6970395B-FDA3-369B-8788-EF5B29583A3B> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_bisect.so\
+       0x1006f0000 -        0x100738ff7 +umath.so (??? - ???) <27FDC397-F391-31F9-9E99-5E5080A2EB13> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/umath.so\
+       0x100762000 -        0x10077bfff +_sort.so (??? - ???) <C956BBC0-E5B2-316E-85C8-1304A621F9DB> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/_sort.so\
+       0x100784000 -        0x100794fff +cPickle.so (??? - ???) <94A9A339-9F72-33B8-B5B3-2352C97F2965> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/cPickle.so\
+       0x10079c000 -        0x1007c3ff7 +scalarmath.so (??? - ???) <F9989E9F-6F04-39AA-AA95-79C6123CA5B7> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/scalarmath.so\
+       0x1007d5000 -        0x1007d9fff +_collections.so (??? - ???) <808FB62E-BB2D-3397-9DC5-998187336C55> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_collections.so\
+       0x1007df000 -        0x1007e3ff7 +operator.so (??? - ???) <160A8CC5-77AC-391A-92E6-228970C95A67> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/operator.so\
+       0x1007ea000 -        0x1007f1fff +itertools.so (??? - ???) <FDAF9FE9-297E-3229-93BF-9A6F85D542C8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/itertools.so\
+       0x1007fc000 -        0x1007fdfff +_functools.so (??? - ???) <45609333-B37C-3E63-8EC1-B2D7BCAEF9AE> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_functools.so\
+       0x101000000 -        0x1010fffef +multiarray.so (??? - ???) <AD07AF69-A114-3875-A78F-EBD3DF744388> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/core/multiarray.so\
+       0x101196000 -        0x101197ff7 +_heapq.so (??? - ???) <BF4855B1-FFE4-3123-B513-14BAE632A17F> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_heapq.so\
+       0x10119b000 -        0x10119dff7 +time.so (??? - ???) <A2C22B2D-E047-3391-804D-D62633D58486> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/time.so\
+       0x1011a3000 -        0x1011a8fe7 +math.so (??? - ???) <FD3E528E-58EA-3498-95EE-874BF7BA7B33> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/math.so\
+       0x1011af000 -        0x1011b3fff +_compiled_base.so (??? - ???) <29D17527-97B8-36FA-A995-6890D6A5BF67> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/lib/_compiled_base.so\
+       0x1011b7000 -        0x1011baff7 +lapack_lite.so (??? - ???) <0A7154E6-369B-3DC4-A892-765B74935C31> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/linalg/lapack_lite.so\
+       0x1011be000 -        0x1011befff +grp.so (??? - ???) <934A2B29-B99A-3E7C-9F8D-027A9F1A9F00> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/grp.so\
+       0x1011c1000 -        0x1011c9ff7 +fftpack_lite.so (??? - ???) <989DFCB4-206F-3816-90B7-A8F426EDFCA7> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/fft/fftpack_lite.so\
+       0x1011cd000 -        0x1011d0fff +strop.so (??? - ???) <29337DC2-EF90-3FE0-B254-228A42D3FDA1> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/strop.so\
+       0x1011d5000 -        0x1011ebff7 +_ctypes.so (??? - ???) <A17B3956-B600-3C79-8463-2A6553124866> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_ctypes.so\
+       0x1011fd000 -        0x1011fdff7 +_scproxy.so (??? - ???) <404F4243-C884-38AA-B3EC-AFBBC377805C> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_scproxy.so\
+       0x101440000 -        0x101480ff7 +mtrand.so (??? - ???) <64C7863A-513C-3943-930E-CE329EF618E4> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/numpy/random/mtrand.so\
+       0x1014ca000 -        0x1014ceff7 +_struct.so (??? - ???) <30718A68-FCED-3101-B1F4-21D561182B6F> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_struct.so\
+       0x1014d5000 -        0x1014d8fff +zlib.so (??? - ???) <93964D5C-57AC-3F10-98D6-BFA0F67723A0> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/zlib.so\
+       0x1014dd000 -        0x1014f2fff +_io.so (??? - ???) <76726815-11AC-3D6A-9DBC-910A8566967C> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_io.so\
+       0x101509000 -        0x10150dff7 +pivlibc.so (??? - ???) <4A97E1E0-BFCD-3865-A2C5-78D3E189CAEA> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/pivlib/pivlibc.so\
+       0x101511000 -        0x101562fe7 +ex2lib.so (??? - ???) <1E89F411-CAAE-314F-AD4F-3AC1362B7E2A> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/pivlib/ex2lib.so\
+       0x101575000 -        0x101603fef +libnetcdf.7.dylib (9.1.0 - compatibility 9.0.0) <230E50A0-D148-31FB-8351-AF17F8FAB4DE> /usr/local/lib/libnetcdf.7.dylib\
+       0x101690000 -        0x10169eff7 +datetime.so (??? - ???) <EEF6B822-6C81-3742-A00D-CFF75B2B3B3B> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/datetime.so\
+       0x1016aa000 -        0x1016adff7 +binascii.so (??? - ???) <8D8D879A-5472-3FAE-A74B-BB16709D64E7> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/binascii.so\
+       0x1016b1000 -        0x1016b2fff +_hashlib.so (??? - ???) <8948DD7E-1AC7-37E2-876A-DEAFBB4DB5FB> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_hashlib.so\
+       0x1016b6000 -        0x1016b7fff +_random.so (??? - ???) <051520E4-117C-329D-9134-1602D8C664BF> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_random.so\
+       0x1016fa000 -        0x1016fbff7 +fcntl.so (??? - ???) <9447F9C9-E6F0-31BB-B693-277413A334B6> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/fcntl.so\
+       0x1016fe000 -        0x101752fef +_imaging.so (??? - ???) <B003DFF1-A045-3DF0-AAC4-86525C17BFC2> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/PIL/_imaging.so\
+       0x101773000 -        0x101778fff +array.so (??? - ???) <955E7BBD-E8DF-321D-8439-55ABFFDF62A6> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/array.so\
+       0x1017bf000 -        0x1017c2ff7 +pivtpsc.so (??? - ???) <FE3BE9EA-55FD-3E0E-97AE-05300A1A9808> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/pivlib/pivtpsc.so\
+       0x1017c5000 -        0x1017eaff7 +fblas.so (??? - ???) <9A8517B1-D5C3-382D-84A0-112AC8FEEB97> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/fblas.so\
+       0x101803000 -        0x10180dfff +_flinalg.so (??? - ???) <4A795FAE-CC71-3ABA-A6F9-438444F3CD03> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/_flinalg.so\
+       0x101814000 -        0x101862fff +flapack.so (??? - ???) <13BBA26B-B751-3076-B6A4-8C6C2D092C98> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/flapack.so\
+       0x101898000 -        0x10189bfff +clapack.so (??? - ???) <D855AECC-704F-3ABF-9B77-5FC519D6DB86> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/clapack.so\
+       0x10189f000 -        0x1018c3fe7 +calc_lwork.so (??? - ???) <47F6154D-569A-3EDF-A06A-D18DB8F28420> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/calc_lwork.so\
+       0x1018ce000 -        0x1018d1ff7 +cblas.so (??? - ???) <43D234A4-C64F-321C-A6BB-5173B5BEF2C8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/linalg/cblas.so\
+       0x1018d5000 -        0x1018edfff +_nd_image.so (??? - ???) <BB384345-A9B7-3715-984B-7B425578177E> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/ndimage/_nd_image.so\
+       0x1018f3000 -        0x1018f6fff +lambertw.so (??? - ???) <81CE7541-2D5E-36E4-BB7A-9CE24919105B> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/special/lambertw.so\
+       0x101a80000 -        0x101b9fff7 +_cephes.so (??? - ???) <FE69E30A-A778-3AC9-93C8-3A062F2E75BA> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/special/_cephes.so\
+       0x101bbd000 -        0x101c89fff +specfun.so (??? - ???) <83280A56-02BB-35F4-8154-34127CDA2025> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/special/specfun.so\
+       0x101cdd000 -        0x101cebff7 +orthogonal_eval.so (??? - ???) <CDAE2B87-6C5F-3719-8CAB-FDA9A7FB5A29> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/special/orthogonal_eval.so\
+       0x101cf4000 -        0x101cf7ff7 +_logit.so (??? - ???) <6770B3F6-9305-3501-AE2E-4F3A54C5CA44> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/special/_logit.so\
+       0x101cfe000 -        0x101d02fff +futil.so (??? - ???) <7C6714F2-D30D-329F-A255-991EC05D80EA> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/stats/futil.so\
+       0x101d86000 -        0x101da8fff +minpack2.so (??? - ???) <40E78125-7ECC-3E65-911D-8FD37D658B1F> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/minpack2.so\
+       0x101db1000 -        0x101dc9ff7 +_minpack.so (??? - ???) <3613B929-23B8-35F5-A859-7C62CD21A3D1> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_minpack.so\
+       0x101dcd000 -        0x101dcefff +_zeros.so (??? - ???) <95FFD8AC-9045-34D4-9178-C0786535DC21> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_zeros.so\
+       0x101dd1000 -        0x101e06ff7 +_lbfgsb.so (??? - ???) <7DF1AE0F-072D-3651-8EB4-EBB4CEBD7BD6> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_lbfgsb.so\
+       0x101e10000 -        0x101e16fff +moduleTNC.so (??? - ???) <2FC7FBFA-B9E0-3314-BD32-7BF8742C8EB2> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/moduleTNC.so\
+       0x101e19000 -        0x101e4bfef +_cobyla.so (??? - ???) <C2A05F6F-6492-3A09-9CA4-D1FB31FA5474> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_cobyla.so\
+       0x101e94000 -        0x101f88fff +_csr.so (??? - ???) <E68769C3-4D15-38E4-B0B9-09274FC6042D> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_csr.so\
+       0x101fb3000 -        0x10204cfff +_csc.so (??? - ???) <9E6BE191-C1BB-34D1-AEF4-CE3F8116B698> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_csc.so\
+       0x102065000 -        0x102092ff7 +_coo.so (??? - ???) <29F4A2ED-47D2-3932-B366-DD0983EE2172> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_coo.so\
+       0x10209a000 -        0x1020aaff7 +_dia.so (??? - ???) <4196E063-CDEA-3BE7-A95D-928CC480418C> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_dia.so\
+       0x1020b1000 -        0x1021c3ff7 +_bsr.so (??? - ???) <A8E9A00A-0689-3032-A6DB-D97BA4FA6260> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_bsr.so\
+       0x1021f8000 -        0x1021fdff7 +_csgraph.so (??? - ???) <9DB61645-6CF4-3F1E-AD75-2D92CDE3DDE7> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/sparsetools/_csgraph.so\
+       0x102243000 -        0x10226fff7 +_iterative.so (??? - ???) <AC7F41EA-DC03-301C-ADF1-EB8572054D19> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/linalg/isolve/_iterative.so\
+       0x102283000 -        0x1022caff7 +_superlu.so (??? - ???) <6DABACE6-BD2C-356F-BD1E-FAE8E8EFD4E8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/linalg/dsolve/_superlu.so\
+       0x1022e1000 -        0x10237dfe7 +_arpack.so (??? - ???) <6AA05B3A-96C4-3E24-BF56-FE58D1ECEF58> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/sparse/linalg/eigen/arpack/_arpack.so\
+       0x102417000 -        0x102443fe7 +_slsqp.so (??? - ???) <692EE038-1625-3307-BF74-6D2EB2B78270> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_slsqp.so\
+       0x10244c000 -        0x10246ffe7 +_nnls.so (??? - ???) <C57F4480-2DAF-3D9F-A45D-5B99FB3C22F1> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/optimize/_nnls.so\
+       0x102478000 -        0x1024cbfef +_odepack.so (??? - ???) <008262B4-A041-3686-B3A6-A1E3E5EF6767> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/integrate/_odepack.so\
+       0x1024d4000 -        0x102509fef +_quadpack.so (??? - ???) <1FBC1718-F3CA-30C7-84F3-EA888D78E772> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/integrate/_quadpack.so\
+       0x102512000 -        0x10255aff7 +vode.so (??? - ???) <8764E4F7-04A9-39D9-8222-A5490054659D> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/integrate/vode.so\
+       0x102566000 -        0x102594fff +_dop.so (??? - ???) <48A380DA-A44F-38A6-9B5F-25A927448DE8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/integrate/_dop.so\
+       0x10259f000 -        0x1025afff7 +vonmises_cython.so (??? - ???) <D40D7284-DA87-300F-907A-F45033518BED> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/stats/vonmises_cython.so\
+       0x1025b5000 -        0x1025bdfff +statlib.so (??? - ???) <0A116837-049A-38BF-B9AB-AD79BF377299> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/stats/statlib.so\
+       0x1025c3000 -        0x1025d5fff +convolve.so (??? - ???) <D54F0E59-722A-3A02-81F9-339DEC26B3B0> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/fftpack/convolve.so\
+       0x1025db000 -        0x1025ddfff +flotracec.so (??? - ???) <20233C48-1661-3EFA-96CA-55A52C56EEB5> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/flolib/flotracec.so\
+       0x1025e8000 -        0x1025eeff7 +_distance_wrap.so (??? - ???) <D292C2D3-70CE-3FBF-AF85-9EDEC1FC33B5> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/spatial/_distance_wrap.so\
+       0x1025f4000 -        0x1025f6fff +floftlec.so (??? - ???) <59ACEF94-C184-3F2D-84F6-EF4359DF89C5> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/flolib/floftlec.so\
+       0x1025f9000 -        0x1025fbff7 +flohetc.so (??? - ???) <7DCA5D69-A0B2-3F90-B300-9526A2B01F83> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/flolib/flohetc.so\
+       0x102740000 -        0x102769fe7 +mvn.so (??? - ???) <584A3E51-2835-3939-8E65-020380860922> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/stats/mvn.so\
+       0x10286a000 -        0x1028a5fff +_fftpack.so (??? - ???) <92C3DA52-D19C-39D0-8AC7-992EBF416131> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/fftpack/_fftpack.so\
+       0x1028f1000 -        0x10293dfff +_fitpack.so (??? - ???) <F4AA40D4-9B45-304F-86F2-4DD16A6129F2> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/interpolate/_fitpack.so\
+       0x102946000 -        0x10299afef +dfitpack.so (??? - ???) <61891FD6-A54D-3017-ADA0-1227492C4866> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/interpolate/dfitpack.so\
+       0x1029a9000 -        0x1029d1fff +interpnd.so (??? - ???) <AECC2212-64F2-3690-87CD-FAA18AB8FB9C> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/interpolate/interpnd.so\
+       0x1029de000 -        0x1029f4ff7 +ckdtree.so (??? - ???) <69547FD8-74E4-30B5-B617-1F81E86CFCA8> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/spatial/ckdtree.so\
+       0x1029fd000 -        0x102a76fff +qhull.so (??? - ???) <CEE79C46-BDCE-3956-B6A2-EBC863BEBC48> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/scipy/spatial/qhull.so\
+       0x102ad3000 -        0x102adcfff +pivsimc.so (??? - ???) <CD0FB247-4398-3A22-81AF-2BE264D4FBDA> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/pivlib/pivsimc.so\
+       0x102ae3000 -        0x102ae6ff7 +select.so (??? - ???) <F851D6C5-91E0-3FC6-B8BA-8F42030B914F> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/select.so\
+       0x102aeb000 -        0x102af2fff +_socket.so (??? - ???) <20C9B2E0-FC0A-3291-ACE1-B2316E8BAECF> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_socket.so\
+       0x102afc000 -        0x102afdfff +tlclibc.so (??? - ???) <ACC67867-99DC-3C8E-9FBD-FECBA086A76D> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/spivet/tlclib/tlclibc.so\
+       0x102cc0000 -        0x102cc4fff +_ssl.so (??? - ???) <41AAA676-9C21-3EAC-BA1B-8C835508F069> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_ssl.so\
+       0x102d49000 -        0x102d4bff7 +_locale.so (??? - ???) <E8646921-3D32-37F3-9BB0-088C9DF721A9> /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload/_locale.so\
+       0x102d8e000 -        0x102d92fff +vtkCommonPython.so (??? - ???) <ACC776DF-80E2-31AF-9083-B9D21530A3A8> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkCommonPython.so\
+       0x102d9a000 -        0x103184fff +libvtkCommonPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <5A7FA6D4-E50D-38CF-AA74-80F128E8196F> /usr/local/build/VTK-build/bin/libvtkCommonPythonD.6.0.dylib\
+       0x103516000 -        0x103549fff +libvtkPythonCore.6.0.dylib (6.0.0 - compatibility 6.0.0) <E882450A-10B9-31F0-9A85-50CC868822E7> /usr/local/build/VTK-build/bin/libvtkPythonCore.6.0.dylib\
+       0x10358c000 -        0x103991fff +libvtkCommon.6.0.dylib (6.0.0 - compatibility 6.0.0) <4515A090-A7CA-317F-9187-D0B337C5EA13> /usr/local/build/VTK-build/bin/libvtkCommon.6.0.dylib\
+       0x103e41000 -        0x103e8cfff +libvtksys.6.0.dylib (6.0.0 - compatibility 6.0.0) <AF83CAEA-0082-3BAB-8204-165C7CD6966E> /usr/local/build/VTK-build/bin/libvtksys.6.0.dylib\
+       0x103f32000 -        0x103f36ff7 +vtkFilteringPython.so (??? - ???) <EF37EE6D-BA00-3924-B220-9B05A72D13A8> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkFilteringPython.so\
+       0x103f3e000 -        0x103f43fff +vtkIOPython.so (??? - ???) <D90D09F6-94CB-346E-85C1-F71D1F04248A> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkIOPython.so\
+       0x103f4b000 -        0x103f75fff +libvtkDICOMParser.6.0.dylib (6.0.0 - compatibility 6.0.0) <279E62E3-3518-381B-8EC2-E7638BDE56E5> /usr/local/build/VTK-build/bin/libvtkDICOMParser.6.0.dylib\
+       0x103fcd000 -        0x103fe4ff7 +libvtkNetCDF_cxx.dylib (??? - ???) <485D3137-1620-3EB5-8378-3006FAEE59D8> /usr/local/build/VTK-build/bin/libvtkNetCDF_cxx.dylib\
+       0x104800000 -        0x104afcfff +libvtkFilteringPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <682F0A89-8E7D-3541-AD29-75155D565A8F> /usr/local/build/VTK-build/bin/libvtkFilteringPythonD.6.0.dylib\
+       0x104d38000 -        0x1051e6ff7 +libvtkFiltering.6.0.dylib (6.0.0 - compatibility 6.0.0) <7717ECED-979B-3032-979F-D1E99374D877> /usr/local/build/VTK-build/bin/libvtkFiltering.6.0.dylib\
+       0x1056e4000 -        0x1056e8fff +vtkImagingPython.so (??? - ???) <60312B0C-40B7-3A24-B32E-D38C0EF9A4FF> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkImagingPython.so\
+       0x1056ee000 -        0x1056f4fff +vtkGraphicsPython.so (??? - ???) <21AE3B77-68A9-3DCF-A3DB-F599EBA90B6C> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkGraphicsPython.so\
+       0x105800000 -        0x105a2bfff +libvtkIOPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <DBB89D68-B584-33DF-A8D0-94439ECCC81E> /usr/local/build/VTK-build/bin/libvtkIOPythonD.6.0.dylib\
+       0x105bb4000 -        0x1062a9fff +libvtkIO.6.0.dylib (6.0.0 - compatibility 6.0.0) <FB997837-C2BD-32A9-BEFC-32BA3DACC907> /usr/local/build/VTK-build/bin/libvtkIO.6.0.dylib\
+       0x10676e000 -        0x1067fafe7 +libvtkNetCDF.6.0.dylib (6.0.0 - compatibility 6.0.0) <0FBCFB26-7ED1-37A3-B605-D6FAE29B7D46> /usr/local/build/VTK-build/bin/libvtkNetCDF.6.0.dylib\
+       0x106881000 -        0x10689cfff +libLSDyna.6.0.dylib (6.0.0 - compatibility 6.0.0) <E9927458-C14B-3184-8117-CF867C59645D> /usr/local/build/VTK-build/bin/libLSDyna.6.0.dylib\
+       0x1068d6000 -        0x10699efff +libvtkmetaio.6.0.dylib (6.0.0 - compatibility 6.0.0) <C5CCB657-318D-3D69-AE56-EC03AB244C92> /usr/local/build/VTK-build/bin/libvtkmetaio.6.0.dylib\
+       0x106a9d000 -        0x106b29fef +libvtksqlite.6.0.dylib (6.0.0 - compatibility 6.0.0) <17020299-51AE-3606-B229-81455891D0CA> /usr/local/build/VTK-build/bin/libvtksqlite.6.0.dylib\
+       0x106b5a000 -        0x106b85fe7 +libvtkpng.6.0.dylib (6.0.0 - compatibility 6.0.0) <2C0682F5-2174-3280-9E55-558B32457074> /usr/local/build/VTK-build/bin/libvtkpng.6.0.dylib\
+       0x106b95000 -        0x106bacfef +libvtkzlib.6.0.dylib (6.0.0 - compatibility 6.0.0) <38847A3F-296D-3E30-B961-05A7A5A310B4> /usr/local/build/VTK-build/bin/libvtkzlib.6.0.dylib\
+       0x106bb3000 -        0x106bdcfe7 +libvtkjpeg.6.0.dylib (6.0.0 - compatibility 6.0.0) <25028C16-B5F5-3799-959F-A12FF85EF724> /usr/local/build/VTK-build/bin/libvtkjpeg.6.0.dylib\
+       0x106bec000 -        0x106c51fff +libvtktiff.6.0.dylib (6.0.0 - compatibility 6.0.0) <E710ACFC-5B4E-3CF0-962C-BAEE48C09861> /usr/local/build/VTK-build/bin/libvtktiff.6.0.dylib\
+       0x106c6c000 -        0x106c97ff7 +libvtkexpat.6.0.dylib (6.0.0 - compatibility 6.0.0) <BF98EA45-05B7-33D8-A551-A0BB59823EEC> /usr/local/build/VTK-build/bin/libvtkexpat.6.0.dylib\
+       0x106ca5000 -        0x106cbffef +libvtkhdf5_hl.1.8.5.dylib (1.8.5 - compatibility 1.8.5) <47B3A99F-24ED-3391-AEBD-7FA2AF13C7FA> /usr/local/build/VTK-build/bin/libvtkhdf5_hl.1.8.5.dylib\
+       0x106cdc000 -        0x10714ffff +libvtkhdf5.1.8.5.dylib (1.8.5 - compatibility 1.8.5) <1B39B7B7-E5E0-3C67-BC92-B0D437DD413B> /usr/local/build/VTK-build/bin/libvtkhdf5.1.8.5.dylib\
+       0x1072e1000 -        0x107494ff7 +libvtkImagingPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <174C5FDE-E42F-3BF5-9D55-22FB38BA0C51> /usr/local/build/VTK-build/bin/libvtkImagingPythonD.6.0.dylib\
+       0x1075c1000 -        0x107a5eff7 +libvtkImaging.6.0.dylib (6.0.0 - compatibility 6.0.0) <D3CB4201-404D-35BB-A1D1-90DCCE9C7EE8> /usr/local/build/VTK-build/bin/libvtkImaging.6.0.dylib\
+       0x107cbd000 -        0x10819ffff +libvtkGraphicsPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <9B753092-DBEB-38CA-BF6A-1111AADAD2F1> /usr/local/build/VTK-build/bin/libvtkGraphicsPythonD.6.0.dylib\
+       0x1084d3000 -        0x108ef6fff +libvtkGraphics.6.0.dylib (6.0.0 - compatibility 6.0.0) <543277EF-BD71-30A8-A324-74E2EA02089B> /usr/local/build/VTK-build/bin/libvtkGraphics.6.0.dylib\
+       0x1094d7000 -        0x109509ff7 +libvtkverdict.6.0.dylib (6.0.0 - compatibility 6.0.0) <0B5F91A6-B1E7-3F0B-9C8B-218103E7C4F3> /usr/local/build/VTK-build/bin/libvtkverdict.6.0.dylib\
+       0x10981a000 -        0x10981efff +vtkGenericFilteringPython.so (??? - ???) <BE52C173-650D-3C7B-B67A-88D026BCB175> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkGenericFilteringPython.so\
+       0x109821000 -        0x109863ff7 +libvtkGenericFilteringPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <14D7F7A1-A8C0-3449-B3B7-39A37F9245D6> /usr/local/build/VTK-build/bin/libvtkGenericFilteringPythonD.6.0.dylib\
+       0x109891000 -        0x1098cefff +libvtkGenericFiltering.6.0.dylib (6.0.0 - compatibility 6.0.0) <6F9B0C03-1EA7-3BF4-A443-D231C78E6D25> /usr/local/build/VTK-build/bin/libvtkGenericFiltering.6.0.dylib\
+       0x10993b000 -        0x109941ff7 +vtkRenderingPython.so (??? - ???) <D2782651-15AC-3200-AB28-8378CDD68ACE> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkRenderingPython.so\
+       0x10994a000 -        0x109d20fff +libvtkRenderingPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <644FD463-15A2-337F-A810-D9A9AA2069B8> /usr/local/build/VTK-build/bin/libvtkRenderingPythonD.6.0.dylib\
+       0x109fb2000 -        0x10a4f9ff7 +libvtkRendering.6.0.dylib (6.0.0 - compatibility 6.0.0) <974699F3-2EDC-3BB4-A270-98E77CAB568D> /usr/local/build/VTK-build/bin/libvtkRendering.6.0.dylib\
+       0x10aa3e000 -        0x10aa48fff +libvtkftgl.6.0.dylib (6.0.0 - compatibility 6.0.0) <E775160D-027D-3CB6-880D-9D8D90AFB6FE> /usr/local/build/VTK-build/bin/libvtkftgl.6.0.dylib\
+       0x10aa56000 -        0x10aaebfff +libvtkfreetype.6.0.dylib (6.0.0 - compatibility 6.0.0) <65BA9D35-FE88-33E1-BBF2-D9385C21D256> /usr/local/build/VTK-build/bin/libvtkfreetype.6.0.dylib\
+       0x10ab22000 -        0x10ab28fff +vtkVolumeRenderingPython.so (??? - ???) <09481AD7-6454-3BC5-AA30-6A71FD3A81B3> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkVolumeRenderingPython.so\
+       0x10ab2d000 -        0x10abeeff7 +libvtkVolumeRenderingPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <7DBE5D70-1F96-3448-AC89-996B3C859684> /usr/local/build/VTK-build/bin/libvtkVolumeRenderingPythonD.6.0.dylib\
+       0x10ac81000 -        0x10b131fff +libvtkVolumeRendering.6.0.dylib (6.0.0 - compatibility 6.0.0) <7899D95C-8CE2-3BB9-870C-E8C0EBD8CA9C> /usr/local/build/VTK-build/bin/libvtkVolumeRendering.6.0.dylib\
+       0x10b4dc000 -        0x10b4e2fff +vtkHybridPython.so (??? - ???) <7FD08328-4545-35F2-A1F7-2B7BE8E377B3> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkHybridPython.so\
+       0x10b4e6000 -        0x10b702fff +libvtkHybridPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <8AA26124-17DB-34D4-83BE-EE9B7868764A> /usr/local/build/VTK-build/bin/libvtkHybridPythonD.6.0.dylib\
+       0x10b85a000 -        0x10bc09ff7 +libvtkHybrid.6.0.dylib (6.0.0 - compatibility 6.0.0) <46CE38FD-E14F-3799-BDFA-495B42534CFC> /usr/local/build/VTK-build/bin/libvtkHybrid.6.0.dylib\
+       0x10bf60000 -        0x10c20bfff +libvtkParallel.6.0.dylib (6.0.0 - compatibility 6.0.0) <85EB4C5A-D5D2-3521-B68A-D9A3A693EB9A> /usr/local/build/VTK-build/bin/libvtkParallel.6.0.dylib\
+       0x10c4da000 -        0x10c53cfff +libvtkexoIIc.6.0.dylib (6.0.0 - compatibility 6.0.0) <100BAC4E-91F5-37F2-9B2C-63C622D5C68E> /usr/local/build/VTK-build/bin/libvtkexoIIc.6.0.dylib\
+       0x10c553000 -        0x10c56efff +libVPIC.6.0.dylib (6.0.0 - compatibility 6.0.0) <4B793C27-4895-33F4-B30F-A4EB14B188FC> /usr/local/build/VTK-build/bin/libVPIC.6.0.dylib\
+       0x10c589000 -        0x10c5b8fff +libCosmo.6.0.dylib (6.0.0 - compatibility 6.0.0) <2534DE06-5440-32D2-98CD-7305D4139397> /usr/local/build/VTK-build/bin/libCosmo.6.0.dylib\
+       0x10c5f4000 -        0x10c5fcfff +vtkWidgetsPython.so (??? - ???) <F83E1075-D205-3BFB-A8FC-7F904DF7AD2C> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkWidgetsPython.so\
+       0x10c602000 -        0x10c86fff7 +libvtkWidgetsPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <C4CE5429-E6C9-3960-9A53-2D2A711EF583> /usr/local/build/VTK-build/bin/libvtkWidgetsPythonD.6.0.dylib\
+       0x10ca2d000 -        0x10cc69fff +libvtkWidgets.6.0.dylib (6.0.0 - compatibility 6.0.0) <F0E6BB2D-4263-3D08-9D49-492BF241B474> /usr/local/build/VTK-build/bin/libvtkWidgets.6.0.dylib\
+       0x10ceb8000 -        0x10cec1fff +vtkChartsPython.so (??? - ???) <7F8A25AA-26BF-35C8-8754-DED7C98D006B> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkChartsPython.so\
+       0x10cec5000 -        0x10cf70fff +libvtkChartsPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <61FE5C8C-FA70-31C4-9E13-514EC98BF829> /usr/local/build/VTK-build/bin/libvtkChartsPythonD.6.0.dylib\
+       0x10cfeb000 -        0x10d141ff7 +libvtkCharts.6.0.dylib (6.0.0 - compatibility 6.0.0) <FBD92FA9-CF42-33B2-9165-58BC0E4FB3BB> /usr/local/build/VTK-build/bin/libvtkCharts.6.0.dylib\
+       0x10d2af000 -        0x10d332ff7 +libvtkViewsPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <5AF34BC8-BEBF-3BB9-B950-A7777CA262AA> /usr/local/build/VTK-build/bin/libvtkViewsPythonD.6.0.dylib\
+       0x10d3a6000 -        0x10d467ff7 +libvtkViews.6.0.dylib (6.0.0 - compatibility 6.0.0) <5FC24F99-207F-366E-9FEB-5B85245C8BF3> /usr/local/build/VTK-build/bin/libvtkViews.6.0.dylib\
+       0x10d57c000 -        0x10d742ff7 +libvtkInfovisPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <AE01F7E4-7A22-3C8F-A977-03B2750FF32F> /usr/local/build/VTK-build/bin/libvtkInfovisPythonD.6.0.dylib\
+       0x10d876000 -        0x10dba6fff +libvtkInfovis.6.0.dylib (6.0.0 - compatibility 6.0.0) <8B56D1D6-9E32-3647-9870-F8D4BB83DBAD> /usr/local/build/VTK-build/bin/libvtkInfovis.6.0.dylib\
+       0x10df28000 -        0x10e092fe7 +libvtklibxml2.6.0.dylib (6.0.0 - compatibility 6.0.0) <5D2D7254-4E6F-3AED-8B35-CD2B50B6375F> /usr/local/build/VTK-build/bin/libvtklibxml2.6.0.dylib\
+       0x10e111000 -        0x10e12eff7 +libvtkalglib.6.0.dylib (6.0.0 - compatibility 6.0.0) <874C4D96-CD24-33F8-984A-178CD634A772> /usr/local/build/VTK-build/bin/libvtkalglib.6.0.dylib\
+       0x10e13d000 -        0x10e145fff +vtkGeovisPython.so (??? - ???) <15E3374A-ACBB-3975-AD96-A800FBA21FA2> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkGeovisPython.so\
+       0x10e149000 -        0x10e1b2fff +libvtkGeovisPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <BE62E5AA-3629-3638-984A-EE258B87E452> /usr/local/build/VTK-build/bin/libvtkGeovisPythonD.6.0.dylib\
+       0x10e1fb000 -        0x10e29ffff +libvtkGeovis.6.0.dylib (6.0.0 - compatibility 6.0.0) <A1BF96B2-C60A-3C36-BDE4-B6086A496792> /usr/local/build/VTK-build/bin/libvtkGeovis.6.0.dylib\
+       0x10e358000 -        0x10e39cfef +libvtkproj4.6.0.dylib (6.0.0 - compatibility 6.0.0) <BDE5BDB3-9554-3527-8026-A264A9CF0DA2> /usr/local/build/VTK-build/bin/libvtkproj4.6.0.dylib\
+       0x10e3c4000 -        0x10e3ccfff +vtkInfovisPython.so (??? - ???) <8CD302C8-C5B1-35CF-981A-C37FC88300ED> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkInfovisPython.so\
+       0x10e3d2000 -        0x10e3dafff +vtkViewsPython.so (??? - ???) <188EF92F-096C-306E-91B5-0C30A320C6D4> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkViewsPython.so\
+       0x10e3de000 -        0x10e3e4fff +vtkParallelPython.so (??? - ???) <058F28B7-4D37-32BC-AE4A-C4C85F586A07> /Library/Python/2.7/site-packages/VTK-6.0.0-py2.7.egg/vtk/vtkParallelPython.so\
+       0x10e3e9000 -        0x10e4e6fff +libvtkParallelPythonD.6.0.dylib (6.0.0 - compatibility 6.0.0) <CDBFCDEC-CFC1-338D-BF53-1E23E09C69C5> /usr/local/build/VTK-build/bin/libvtkParallelPythonD.6.0.dylib\
+    0x7fff61278000 -     0x7fff612acbaf  dyld (195.6 - ???) <0CD1B35B-A28F-32DA-B72E-452EAD609613> /usr/lib/dyld\
+    0x7fff8a5b6000 -     0x7fff8ab9afff  libBLAS.dylib (??? - ???) <C34F6D88-187F-33DC-8A68-C0C9D1FA36DF> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib\
+    0x7fff8ab9b000 -     0x7fff8ad6ffff  com.apple.CoreFoundation (6.7.1 - 635.19) <57B77925-9065-38C9-A05B-02F4F9ED007C> /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation\
+    0x7fff8ad70000 -     0x7fff8ad96ff7  com.apple.framework.familycontrols (3.0 - 300) <DC06CF3A-2F10-3867-9498-CADAE30D0CE4> /System/Library/PrivateFrameworks/FamilyControls.framework/Versions/A/FamilyControls\
+    0x7fff8ad97000 -     0x7fff8af99fff  libicucore.A.dylib (46.1.0 - compatibility 1.0.0) <38CD6ED3-C8E4-3CCD-89AC-9C3198803101> /usr/lib/libicucore.A.dylib\
+    0x7fff8afaa000 -     0x7fff8afadfff  libCoreVMClient.dylib (??? - ???) <E034C772-4263-3F48-B083-25A758DD6228> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCoreVMClient.dylib\
+    0x7fff8afae000 -     0x7fff8afd2fff  com.apple.Kerberos (1.0 - 1) <1F826BCE-DA8F-381D-9C4C-A36AA0EA1CB9> /System/Library/Frameworks/Kerberos.framework/Versions/A/Kerberos\
+    0x7fff8afd3000 -     0x7fff8b2efff7  com.apple.CoreServices.CarbonCore (960.20 - 960.20) <C45CA09E-8867-3D67-BB2E-48D2E6B0D78C> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CarbonCore.framework/Versions/A/CarbonCore\
+    0x7fff8b70e000 -     0x7fff8b721ff7  libCRFSuite.dylib (??? - ???) <0B76941F-218E-30C8-B6DE-E15919F8DBEB> /usr/lib/libCRFSuite.dylib\
+    0x7fff8b722000 -     0x7fff8b722fff  com.apple.ApplicationServices (41 - 41) <89B6AD5B-5C75-3E83-8C2B-AA7F4C55E400> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/ApplicationServices\
+    0x7fff8b73d000 -     0x7fff8b745fff  libsystem_dnssd.dylib (??? - ???) <D0CEBE0E-956F-3CCF-9808-25FDEA42B9AF> /usr/lib/system/libsystem_dnssd.dylib\
+    0x7fff8b746000 -     0x7fff8b7c9fef  com.apple.Metadata (10.7.0 - 627.28) <1C14033A-69C9-3757-B24D-5583AEAC2CBA> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Metadata\
+    0x7fff8b7ca000 -     0x7fff8b7d0fff  IOSurface (??? - ???) <8114F62C-F75D-3123-99E9-268CB3AE74F7> /System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface\
+    0x7fff8b818000 -     0x7fff8b84bff7  com.apple.GSS (2.1 - 2.0) <57AD81CE-6320-38C9-9B66-0E5A4DEA898A> /System/Library/Frameworks/GSS.framework/Versions/A/GSS\
+    0x7fff8b84c000 -     0x7fff8b857ff7  com.apple.speech.recognition.framework (4.0.19 - 4.0.19) <48607E6E-8612-3267-9184-E948B1863B32> /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/SpeechRecognition.framework/Versions/A/SpeechRecognition\
+    0x7fff8b858000 -     0x7fff8b87fff7  com.apple.PerformanceAnalysis (1.10 - 10) <DD87C994-66D6-330A-BAF9-AB86BE125A62> /System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/PerformanceAnalysis\
+    0x7fff8b892000 -     0x7fff8b89dff7  libc++abi.dylib (14.0.0 - compatibility 1.0.0) <8FF3D766-D678-36F6-84AC-423C878E6D14> /usr/lib/libc++abi.dylib\
+    0x7fff8b988000 -     0x7fff8b98dfff  libpam.2.dylib (3.0.0 - compatibility 3.0.0) <D952F17B-200A-3A23-B9B2-7C1F7AC19189> /usr/lib/libpam.2.dylib\
+    0x7fff8b99c000 -     0x7fff8ba06ff7  com.apple.framework.IOKit (2.0 - ???) <EEEB42FD-E3E1-3A94-A771-B1993B694F17> /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit\
+    0x7fff8c168000 -     0x7fff8c18cfff  com.apple.RemoteViewServices (1.3 - 44) <21D7A0E7-6699-37AB-AE6C-BF69AF3D61C2> /System/Library/PrivateFrameworks/RemoteViewServices.framework/Versions/A/RemoteViewServices\
+    0x7fff8c221000 -     0x7fff8c2a6ff7  com.apple.Heimdal (2.1 - 2.0) <3758B442-6175-32B8-8C17-D8ABDD589BF9> /System/Library/PrivateFrameworks/Heimdal.framework/Versions/A/Heimdal\
+    0x7fff8c3a2000 -     0x7fff8c497fff  libiconv.2.dylib (7.0.0 - compatibility 7.0.0) <5C40E880-0706-378F-B864-3C2BD922D926> /usr/lib/libiconv.2.dylib\
+    0x7fff8c498000 -     0x7fff8c59aff7  libxml2.2.dylib (10.3.0 - compatibility 10.0.0) <22F1D1B6-1761-3687-9EFD-036EA15FB2E4> /usr/lib/libxml2.2.dylib\
+    0x7fff8c59b000 -     0x7fff8c87dfff  com.apple.security (7.0 - 55110) <252F9E04-FF8A-3EA7-A38E-51DD0653663C> /System/Library/Frameworks/Security.framework/Versions/A/Security\
+    0x7fff8c87e000 -     0x7fff8c884fff  com.apple.DiskArbitration (2.4.1 - 2.4.1) <CEA34337-63DE-302E-81AA-10D717E1F699> /System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration\
+    0x7fff8c99d000 -     0x7fff8ca05ff7  com.apple.audio.CoreAudio (4.0.2 - 4.0.2) <DFD8F4DE-3B45-3A2E-9CBE-FD8D5DD30923> /System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio\
+    0x7fff8ca12000 -     0x7fff8ca66ff7  com.apple.ScalableUserInterface (1.0 - 1) <33563775-C662-313D-B7FA-3D575A9F3D41> /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/ScalableUserInterface.framework/Versions/A/ScalableUserInterface\
+    0x7fff8ca67000 -     0x7fff8caa2fff  libsystem_info.dylib (??? - ???) <35F90252-2AE1-32C5-8D34-782C614D9639> /usr/lib/system/libsystem_info.dylib\
+    0x7fff8cb20000 -     0x7fff8cb5afe7  com.apple.DebugSymbols (2.1 - 87) <ED2B177C-4146-3715-91DF-D99A8ED5449A> /System/Library/PrivateFrameworks/DebugSymbols.framework/Versions/A/DebugSymbols\
+    0x7fff8cb5b000 -     0x7fff8cb64ff7  libsystem_notify.dylib (80.1.0 - compatibility 1.0.0) <A4D651E3-D1C6-3934-AD49-7A104FD14596> /usr/lib/system/libsystem_notify.dylib\
+    0x7fff8cb81000 -     0x7fff8cb83fff  libquarantine.dylib (36.2.0 - compatibility 1.0.0) <48656562-FF20-3B55-9F93-407ACA7341C0> /usr/lib/system/libquarantine.dylib\
+    0x7fff8cedf000 -     0x7fff8cee0ff7  libsystem_blocks.dylib (53.0.0 - compatibility 1.0.0) <8BCA214A-8992-34B2-A8B9-B74DEACA1869> /usr/lib/system/libsystem_blocks.dylib\
+    0x7fff8cf90000 -     0x7fff8cf96ff7  libunwind.dylib (30.0.0 - compatibility 1.0.0) <1E9C6C8C-CBE8-3F4B-A5B5-E03E3AB53231> /usr/lib/system/libunwind.dylib\
+    0x7fff8d156000 -     0x7fff8d37efe7  com.apple.CoreData (104.1 - 358.13) <F1DA3110-C4DF-3F0A-A057-AEE78DE8C99D> /System/Library/Frameworks/CoreData.framework/Versions/A/CoreData\
+    0x7fff8d83f000 -     0x7fff8d845fff  libmacho.dylib (800.0.0 - compatibility 1.0.0) <165514D7-1BFA-38EF-A151-676DCD21FB64> /usr/lib/system/libmacho.dylib\
+    0x7fff8d846000 -     0x7fff8d888ff7  libcommonCrypto.dylib (55010.0.0 - compatibility 1.0.0) <BB770C22-8C57-365A-8716-4A3C36AE7BFB> /usr/lib/system/libcommonCrypto.dylib\
+    0x7fff8d969000 -     0x7fff8d969fff  com.apple.Cocoa (6.6 - ???) <7EC4D759-B2A6-3A99-AC75-809FED1500C6> /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa\
+    0x7fff8d96a000 -     0x7fff8d9a3fe7  libssl.0.9.8.dylib (44.0.0 - compatibility 0.9.8) <79AAEC98-1258-3DA4-B1C0-4120049D390B> /usr/lib/libssl.0.9.8.dylib\
+    0x7fff8d9a4000 -     0x7fff8d9ccff7  com.apple.CoreVideo (1.7 - 70.1) <98F917B2-FB53-3EA3-B548-7E97B38309A7> /System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo\
+    0x7fff8d9cf000 -     0x7fff8da2ffff  libvDSP.dylib (325.4.0 - compatibility 1.0.0) <3A7521E6-5510-3FA7-AB65-79693A7A5839> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvDSP.dylib\
+    0x7fff8da30000 -     0x7fff8db0efff  com.apple.ImageIO.framework (3.1.1 - 3.1.1) <DB530A63-8ECF-3B53-AC9A-1692A5397E2F> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/ImageIO\
+    0x7fff8db0f000 -     0x7fff8db14fff  libcompiler_rt.dylib (6.0.0 - compatibility 1.0.0) <98ECD5F6-E85C-32A5-98CD-8911230CB66A> /usr/lib/system/libcompiler_rt.dylib\
+    0x7fff8db17000 -     0x7fff8db18ff7  libsystem_sandbox.dylib (??? - ???) <5087ADAD-D34D-3844-9D04-AFF93CED3D92> /usr/lib/system/libsystem_sandbox.dylib\
+    0x7fff8dca4000 -     0x7fff8e6347a7  com.apple.CoreGraphics (1.600.0 - ???) <177D9BAD-72C9-3ADF-A391-5B88C5EE623F> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics\
+    0x7fff8e690000 -     0x7fff8e9baff7  com.apple.HIToolbox (1.8 - ???) <D6A0D513-4893-35B4-9FFE-865FF419F2C2> /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/HIToolbox\
+    0x7fff8eb54000 -     0x7fff8ebcafff  com.apple.CoreSymbolication (2.2 - 73.2) <126415E3-3A35-315B-B4B7-507CDBED0D58> /System/Library/PrivateFrameworks/CoreSymbolication.framework/Versions/A/CoreSymbolication\
+    0x7fff8ebcb000 -     0x7fff8eee4ff7  com.apple.Foundation (6.7.1 - 833.24) <6D4E6F93-64EF-3D41-AE80-2BB10E2E6323> /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation\
+    0x7fff8ef6d000 -     0x7fff8efaefff  com.apple.QD (3.40 - ???) <47674D2C-BE88-388E-B1B0-03F08BFFE5FD> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/QD.framework/Versions/A/QD\
+    0x7fff8efaf000 -     0x7fff8efb0fff  liblangid.dylib (??? - ???) <CACBE3C3-2F7B-3EED-B50E-EDB73F473B77> /usr/lib/liblangid.dylib\
+    0x7fff8f00e000 -     0x7fff8f054ff7  libcurl.4.dylib (7.0.0 - compatibility 7.0.0) <01DD0773-236C-3AC3-B43B-07911F458767> /usr/lib/libcurl.4.dylib\
+    0x7fff8f055000 -     0x7fff8f05afff  com.apple.OpenDirectory (10.7 - 146) <A674AB55-6E3D-39AE-9F9B-9865D0193020> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/OpenDirectory\
+    0x7fff8f099000 -     0x7fff8f0d8ff7  libGLImage.dylib (??? - ???) <348729DC-BC44-3744-B249-9DFA6498344A> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLImage.dylib\
+    0x7fff8f0e7000 -     0x7fff8f0e8ff7  libremovefile.dylib (21.1.0 - compatibility 1.0.0) <739E6C83-AA52-3C6C-A680-B37FE2888A04> /usr/lib/system/libremovefile.dylib\
+    0x7fff8f136000 -     0x7fff8f28ffff  com.apple.audio.toolbox.AudioToolbox (1.7.2 - 1.7.2) <0AD8197C-1BA9-30CD-98F1-4CA2C6559BA8> /System/Library/Frameworks/AudioToolbox.framework/Versions/A/AudioToolbox\
+    0x7fff8f450000 -     0x7fff8f917fff  FaceCoreLight (1.4.7 - compatibility 1.0.0) <E9D2A69C-6E81-358C-A162-510969F91490> /System/Library/PrivateFrameworks/FaceCoreLight.framework/Versions/A/FaceCoreLight\
+    0x7fff8f918000 -     0x7fff8f97eff7  com.apple.coreui (1.2.1 - 165.3) <378C9221-ADE6-36D9-9944-F33AE6904E4F> /System/Library/PrivateFrameworks/CoreUI.framework/Versions/A/CoreUI\
+    0x7fff8f97f000 -     0x7fff8f9d1ff7  libGLU.dylib (??? - ???) <3C9153A0-8499-3DC0-AAA4-9FA6E488BE13> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib\
+    0x7fff8fd71000 -     0x7fff8fd88fff  com.apple.CFOpenDirectory (10.7 - 146) <E6D4F114-678B-3957-9C59-9206ECDA756E> /System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks/CFOpenDirectory.framework/Versions/A/CFOpenDirectory\
+    0x7fff8ff04000 -     0x7fff8ff23fff  libresolv.9.dylib (46.1.0 - compatibility 1.0.0) <0635C52D-DD53-3721-A488-4C6E95607A74> /usr/lib/libresolv.9.dylib\
+    0x7fff8ff24000 -     0x7fff8ff32fff  com.apple.NetAuth (3.2 - 3.2) <F0D60E34-37A9-308D-B44E-E3450906173A> /System/Library/PrivateFrameworks/NetAuth.framework/Versions/A/NetAuth\
+    0x7fff8ff33000 -     0x7fff8ff33fff  libkeymgr.dylib (23.0.0 - compatibility 1.0.0) <61EFED6A-A407-301E-B454-CD18314F0075> /usr/lib/system/libkeymgr.dylib\
+    0x7fff8ff34000 -     0x7fff8ff36fff  libCVMSPluginSupport.dylib (??? - ???) <B2FC6EC0-1A0C-3482-A3C9-D08446E8713A> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libCVMSPluginSupport.dylib\
+    0x7fff8ffff000 -     0x7fff9019efff  com.apple.QuartzCore (1.7 - 270.2) <F2CCDEFB-DE43-3E32-B242-A22C82617186> /System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore\
+    0x7fff9019f000 -     0x7fff901b5fff  libGL.dylib (??? - ???) <6A473BF9-4D35-34C6-9F8B-86B68091A9AF> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGL.dylib\
+    0x7fff90341000 -     0x7fff9034ffff  libdispatch.dylib (187.7.0 - compatibility 1.0.0) <712AAEAC-AD90-37F7-B71F-293FF8AE8723> /usr/lib/system/libdispatch.dylib\
+    0x7fff90391000 -     0x7fff903a1ff7  com.apple.opengl (1.7.6 - 1.7.6) <C168883D-9BC5-3C38-9937-42852D719718> /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL\
+    0x7fff9083b000 -     0x7fff908aefff  libstdc++.6.dylib (52.0.0 - compatibility 7.0.0) <6BDD43E4-A4B1-379E-9ED5-8C713653DFF2> /usr/lib/libstdc++.6.dylib\
+    0x7fff908af000 -     0x7fff90953fff  com.apple.ink.framework (1.3.2 - 110) <C8840EA4-AE7B-360C-A191-D36B5F10B6B5> /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/Ink.framework/Versions/A/Ink\
+    0x7fff90954000 -     0x7fff90959fff  libGIF.dylib (??? - ???) <393E2DB5-9479-39A6-A75A-B5F20B852532> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libGIF.dylib\
+    0x7fff909e8000 -     0x7fff909f2ff7  liblaunch.dylib (392.36.0 - compatibility 1.0.0) <CB8B5808-80C0-318E-AE12-96CA916442FE> /usr/lib/system/liblaunch.dylib\
+    0x7fff909f3000 -     0x7fff90c66fff  com.apple.CoreImage (7.93 - 1.0.1) <0B7D855E-A2B6-3C14-A242-2CF2165C6E7E> /System/Library/Frameworks/QuartzCore.framework/Versions/A/Frameworks/CoreImage.framework/Versions/A/CoreImage\
+    0x7fff91347000 -     0x7fff9135bff7  com.apple.LangAnalysis (1.7.0 - 1.7.0) <04C31EF0-912A-3004-A08F-CEC27030E0B2> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/LangAnalysis.framework/Versions/A/LangAnalysis\
+    0x7fff9135c000 -     0x7fff9135efff  com.apple.TrustEvaluationAgent (2.0 - 1) <1F31CAFF-C1C6-33D3-94E9-11B721761DDF> /System/Library/PrivateFrameworks/TrustEvaluationAgent.framework/Versions/A/TrustEvaluationAgent\
+    0x7fff913b1000 -     0x7fff913b1fff  com.apple.vecLib (3.7 - vecLib 3.7) <9A58105C-B36E-35B5-812C-4ED693F2618F> /System/Library/Frameworks/vecLib.framework/Versions/A/vecLib\
+    0x7fff913b2000 -     0x7fff913dfff7  com.apple.opencl (1.50.69 - 1.50.69) <687265AF-E9B6-3537-89D7-7C12EB38193D> /System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL\
+    0x7fff92280000 -     0x7fff92399fff  com.apple.DesktopServices (1.6.2 - 1.6.2) <6B83172E-F539-3AF8-A76D-1F9EA357B076> /System/Library/PrivateFrameworks/DesktopServicesPriv.framework/Versions/A/DesktopServicesPriv\
+    0x7fff92427000 -     0x7fff92443ff7  com.apple.GenerationalStorage (1.0 - 126.1) <509F52ED-E54B-3FEF-B3C2-759387B826E6> /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/GenerationalStorage\
+    0x7fff92444000 -     0x7fff92447fff  libRadiance.dylib (??? - ???) <CD89D70D-F177-3BAE-8A26-644EA7D5E28E> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libRadiance.dylib\
+    0x7fff92448000 -     0x7fff92448fff  com.apple.Accelerate (1.7 - Accelerate 1.7) <82DDF6F5-FBC3-323D-B71D-CF7ABC5CF568> /System/Library/Frameworks/Accelerate.framework/Versions/A/Accelerate\
+    0x7fff9244e000 -     0x7fff9248dfff  com.apple.AE (527.7 - 527.7) <B82F7ABC-AC8B-3507-B029-969DD5CA813D> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/AE\
+    0x7fff924cf000 -     0x7fff924effff  libsystem_kernel.dylib (1699.24.23 - compatibility 1.0.0) <80927C55-D4D9-31B6-9CF3-6134FCF1E1CA> /usr/lib/system/libsystem_kernel.dylib\
+    0x7fff92536000 -     0x7fff92582ff7  com.apple.SystemConfiguration (1.11.2 - 1.11) <A14F3583-9CC0-397D-A50E-17217075953F> /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration\
+    0x7fff92583000 -     0x7fff929b0fff  libLAPACK.dylib (??? - ???) <4F2E1055-2207-340B-BB45-E4F16171EE0D> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib\
+    0x7fff929bb000 -     0x7fff92ac2fe7  libsqlite3.dylib (9.6.0 - compatibility 9.0.0) <EE02BB01-64C9-304D-9719-A35F5CD6D04C> /usr/lib/libsqlite3.dylib\
+    0x7fff92af9000 -     0x7fff92c2ffff  com.apple.vImage (5.1 - 5.1) <A08B7582-67BC-3EED-813A-4833645964A7> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vImage.framework/Versions/A/vImage\
+    0x7fff92cdb000 -     0x7fff92ce1fff  libGFXShared.dylib (??? - ???) <B95E9B22-AE68-3E48-8733-00CCCA08D50E> /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGFXShared.dylib\
+    0x7fff92ce2000 -     0x7fff92cf4ff7  libsasl2.2.dylib (3.15.0 - compatibility 3.0.0) <6245B497-784B-355C-98EF-2DC6B45BF05C> /usr/lib/libsasl2.2.dylib\
+    0x7fff92f5d000 -     0x7fff92f98fff  com.apple.LDAPFramework (3.1 - 120.2) <19B714EB-104B-38D2-9ADD-155F71F6844B> /System/Library/Frameworks/LDAP.framework/Versions/A/LDAP\
+    0x7fff92fd8000 -     0x7fff92feffff  com.apple.MultitouchSupport.framework (220.62.1 - 220.62.1) <3F8C015B-88AC-370F-B39D-B4665FB7616A> /System/Library/PrivateFrameworks/MultitouchSupport.framework/Versions/A/MultitouchSupport\
+    0x7fff93024000 -     0x7fff93024fff  com.apple.Accelerate.vecLib (3.7 - vecLib 3.7) <C06A140F-6114-3B8B-B080-E509303145B8> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/vecLib\
+    0x7fff9304d000 -     0x7fff93076fff  libJPEG.dylib (??? - ???) <64D079F9-256A-323B-A837-84628B172F21> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib\
+    0x7fff93077000 -     0x7fff930b7ff7  libcups.2.dylib (2.9.0 - compatibility 2.0.0) <29DE948E-38C4-3CC5-B528-40C691380607> /usr/lib/libcups.2.dylib\
+    0x7fff930b8000 -     0x7fff930bcfff  libdyld.dylib (195.6.0 - compatibility 1.0.0) <FFC59565-64BD-3B37-90A4-E2C3A422CFC1> /usr/lib/system/libdyld.dylib\
+    0x7fff93856000 -     0x7fff93868ff7  libbsm.0.dylib (??? - ???) <349BB16F-75FA-363F-8D98-7A9C3FA90A0D> /usr/lib/libbsm.0.dylib\
+    0x7fff93872000 -     0x7fff93877fff  libcache.dylib (47.0.0 - compatibility 1.0.0) <1571C3AB-BCB2-38CD-B3B2-C5FC3F927C6A> /usr/lib/system/libcache.dylib\
+    0x7fff93fb1000 -     0x7fff93fb6ff7  libsystem_network.dylib (??? - ???) <5DE7024E-1D2D-34A2-80F4-08326331A75B> /usr/lib/system/libsystem_network.dylib\
+    0x7fff93fb7000 -     0x7fff94032ff7  com.apple.print.framework.PrintCore (7.1 - 366.1) <3F140DEB-9F87-3672-97CC-F983752581AC> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/PrintCore.framework/Versions/A/PrintCore\
+    0x7fff9405c000 -     0x7fff94161fff  libFontParser.dylib (??? - ???) <0920DA16-2066-33E6-BF95-AD4B0F3C22B0> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontParser.dylib\
+    0x7fff94162000 -     0x7fff94163fff  libunc.dylib (24.0.0 - compatibility 1.0.0) <337960EE-0A85-3DD0-A760-7134CF4C0AFF> /usr/lib/system/libunc.dylib\
+    0x7fff94504000 -     0x7fff945e1fef  libsystem_c.dylib (763.12.0 - compatibility 1.0.0) <FF69F06E-0904-3C08-A5EF-536FAFFFDC22> /usr/lib/system/libsystem_c.dylib\
+    0x7fff945e2000 -     0x7fff9460dff7  libxslt.1.dylib (3.24.0 - compatibility 3.0.0) <4DB5ED11-004B-36B5-AE5F-2AB714754241> /usr/lib/libxslt.1.dylib\
+    0x7fff9460e000 -     0x7fff9460efff  com.apple.audio.units.AudioUnit (1.7.2 - 1.7.2) <04C10813-CCE5-3333-8C72-E8E35E417B3B> /System/Library/Frameworks/AudioUnit.framework/Versions/A/AudioUnit\
+    0x7fff9461d000 -     0x7fff94671ff7  libFontRegistry.dylib (??? - ???) <F98926EF-FFA0-37C5-824C-02E436E21DD1> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/Resources/libFontRegistry.dylib\
+    0x7fff94682000 -     0x7fff94694ff7  libz.1.dylib (1.2.5 - compatibility 1.0.0) <30CBEF15-4978-3DED-8629-7109880A19D4> /usr/lib/libz.1.dylib\
+    0x7fff94695000 -     0x7fff94779e5f  libobjc.A.dylib (228.0.0 - compatibility 1.0.0) <871E688B-CF57-3BC7-80D6-F6476DFF109B> /usr/lib/libobjc.A.dylib\
+    0x7fff9477a000 -     0x7fff948e1ff7  com.apple.CFNetwork (520.3.2 - 520.3.2) <516B611D-E53E-3467-9211-3C5B86ABA865> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/CFNetwork.framework/Versions/A/CFNetwork\
+    0x7fff948ef000 -     0x7fff949a2fff  com.apple.CoreText (220.11.0 - ???) <0322442E-0530-37E8-A7D6-AEFD909F0AFE> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreText.framework/Versions/A/CoreText\
+    0x7fff949a3000 -     0x7fff949b2ff7  libxar-nossl.dylib (??? - ???) <A6ABBFB9-E4ED-38AD-BBBB-F9958B9CEFB5> /usr/lib/libxar-nossl.dylib\
+    0x7fff949b3000 -     0x7fff94abffff  libcrypto.0.9.8.dylib (44.0.0 - compatibility 0.9.8) <3A8E1F89-5E26-3C8B-B538-81F5D61DBF8A> /usr/lib/libcrypto.0.9.8.dylib\
+    0x7fff94ba7000 -     0x7fff94c49ff7  com.apple.securityfoundation (5.0 - 55107) <6C2E7362-CB11-3CBD-BB1C-348E4B10F25A> /System/Library/Frameworks/SecurityFoundation.framework/Versions/A/SecurityFoundation\
+    0x7fff94cfc000 -     0x7fff94d80ff7  com.apple.ApplicationServices.ATS (317.5.0 - ???) <C2B254F0-6ED8-3313-9CFC-9ACD519C8A9E> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ATS.framework/Versions/A/ATS\
+    0x7fff94df6000 -     0x7fff94ed8fff  com.apple.CoreServices.OSServices (478.37 - 478.37) <1DAC695E-0D0F-3AE2-974F-A173E69E67CC> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/OSServices.framework/Versions/A/OSServices\
+    0x7fff94f35000 -     0x7fff94faaff7  libc++.1.dylib (19.0.0 - compatibility 1.0.0) <C0EFFF1B-0FEB-3F99-BE54-506B35B555A9> /usr/lib/libc++.1.dylib\
+    0x7fff94fab000 -     0x7fff950b8fff  libJP2.dylib (??? - ???) <F2B34A61-75F0-3BFE-A309-EE0DF4AF9E37> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libJP2.dylib\
+    0x7fff950b9000 -     0x7fff950cefff  com.apple.speech.synthesis.framework (4.0.74 - 4.0.74) <C061ECBB-7061-3A43-8A18-90633F943295> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/SpeechSynthesis.framework/Versions/A/SpeechSynthesis\
+    0x7fff950cf000 -     0x7fff950cffff  com.apple.CoreServices (53 - 53) <043C8026-8EDD-3241-B090-F589E24062EF> /System/Library/Frameworks/CoreServices.framework/Versions/A/CoreServices\
+    0x7fff950d0000 -     0x7fff950d7fff  libcopyfile.dylib (85.1.0 - compatibility 1.0.0) <0AB51EE2-E914-358C-AC19-47BC024BDAE7> /usr/lib/system/libcopyfile.dylib\
+    0x7fff952c7000 -     0x7fff952d5ff7  libkxld.dylib (??? - ???) <B779CF25-496C-31B0-B336-3E4E3E1C32CC> /usr/lib/system/libkxld.dylib\
+    0x7fff952d7000 -     0x7fff95377fff  com.apple.LaunchServices (480.27.1 - 480.27.1) <4DC96C1E-6FDE-305E-9718-E4C5C1341F56> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/LaunchServices\
+    0x7fff95378000 -     0x7fff95f7cfff  com.apple.AppKit (6.7.3 - 1138.32) <A9EB81C6-C519-3F29-89F1-42C3E8930281> /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit\
+    0x7fff961a9000 -     0x7fff961d6fe7  libSystem.B.dylib (159.1.0 - compatibility 1.0.0) <7BEBB139-50BB-3112-947A-F4AA168F991C> /usr/lib/libSystem.B.dylib\
+    0x7fff96503000 -     0x7fff965caff7  com.apple.ColorSync (4.7.1 - 4.7.1) <EA74B067-9916-341A-9C68-6165A4656042> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ColorSync.framework/Versions/A/ColorSync\
+    0x7fff965e2000 -     0x7fff96678ff7  libvMisc.dylib (325.4.0 - compatibility 1.0.0) <642D8D54-F9F5-3FBB-A96C-EEFE94C6278B> /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libvMisc.dylib\
+    0x7fff96679000 -     0x7fff966a9ff7  com.apple.DictionaryServices (1.2.1 - 158.2) <3FC86118-7553-38F7-8916-B329D2E94476> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/DictionaryServices.framework/Versions/A/DictionaryServices\
+    0x7fff966aa000 -     0x7fff966f8fff  libauto.dylib (??? - ???) <D8AC8458-DDD0-3939-8B96-B6CED81613EF> /usr/lib/libauto.dylib\
+    0x7fff966f9000 -     0x7fff96793ff7  com.apple.SearchKit (1.4.0 - 1.4.0) <4E70C394-773E-3A4B-A93C-59A88ABA9509> /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/SearchKit.framework/Versions/A/SearchKit\
+    0x7fff967d9000 -     0x7fff9683bff7  com.apple.Symbolication (1.3 - 91) <B072970E-9EC1-3495-A1FA-D344C6E74A13> /System/Library/PrivateFrameworks/Symbolication.framework/Versions/A/Symbolication\
+    0x7fff9683c000 -     0x7fff9685cfff  libPng.dylib (??? - ???) <F4D84592-C450-3076-88E9-8E6517C7EF33> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libPng.dylib\
+    0x7fff96ba9000 -     0x7fff96bc6fff  libxpc.dylib (77.18.0 - compatibility 1.0.0) <26C05F31-E809-3B47-AF42-1460971E3AC3> /usr/lib/system/libxpc.dylib\
+    0x7fff96bc7000 -     0x7fff96bc8fff  libDiagnosticMessagesClient.dylib (??? - ???) <3DCF577B-F126-302B-BCE2-4DB9A95B8598> /usr/lib/libDiagnosticMessagesClient.dylib\
+    0x7fff96bc9000 -     0x7fff96bcdfff  libmathCommon.A.dylib (2026.0.0 - compatibility 1.0.0) <FF83AFF7-42B2-306E-90AF-D539C51A4542> /usr/lib/system/libmathCommon.A.dylib\
+    0x7fff96bce000 -     0x7fff96c3efff  com.apple.datadetectorscore (3.0 - 179.4) <B4C6417F-296C-31C1-BB94-980BFCDC9175> /System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/DataDetectorsCore\
+    0x7fff96c3f000 -     0x7fff96c40fff  libdnsinfo.dylib (395.10.0 - compatibility 1.0.0) <2301DE05-6950-3AFF-A8A6-DA76D4C079B5> /usr/lib/system/libdnsinfo.dylib\
+    0x7fff96c52000 -     0x7fff96cadff7  com.apple.HIServices (1.11 - ???) <DE8FA7FA-0A41-35D9-8473-5104F81DA934> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/HIServices\
+    0x7fff96cae000 -     0x7fff96cb5ff7  com.apple.CommerceCore (1.0 - 17) <3894FE48-EDCE-30E9-9796-E2F959D92704> /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Frameworks/CommerceCore.framework/Versions/A/CommerceCore\
+    0x7fff9738a000 -     0x7fff97391fff  com.apple.NetFS (4.0 - 4.0) <433EEE54-E383-3505-9154-45B909FD3AF0> /System/Library/Frameworks/NetFS.framework/Versions/A/NetFS\
+    0x7fff97392000 -     0x7fff973eafff  libTIFF.dylib (??? - ???) <DD797FBE-9B63-3785-A9EA-0321D113538B> /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libTIFF.dylib\
+    0x7fff97415000 -     0x7fff97422ff7  libbz2.1.0.dylib (1.0.5 - compatibility 1.0.0) <3373D310-3B10-3DD1-B754-B7B138CD448D> /usr/lib/libbz2.1.0.dylib\
+    0x7fff97453000 -     0x7fff9745efff  com.apple.CommonAuth (2.1 - 2.0) <272CB600-6DA8-3952-97C0-5DC594DCA024> /System/Library/PrivateFrameworks/CommonAuth.framework/Versions/A/CommonAuth\
+\
+External Modification Summary:\
+  Calls made by other processes targeting this process:\
+    task_for_pid: 0\
+    thread_create: 0\
+    thread_set_state: 0\
+  Calls made by this process:\
+    task_for_pid: 0\
+    thread_create: 0\
+    thread_set_state: 0\
+  Calls made by all processes on this machine:\
+    task_for_pid: 7440\
+    thread_create: 0\
+    thread_set_state: 0\
+\
+VM Region Summary:\
+ReadOnly portion of Libraries: Total=324.5M resident=237.7M(73%) swapped_out_or_unallocated=86.8M(27%)\
+Writable regions: Total=103.9M written=77.7M(75%) resident=86.2M(83%) swapped_out=0K(0%) unallocated=17.7M(17%)\
+ \
+REGION TYPE                      VIRTUAL\
+===========                      =======\
+MALLOC                             88.8M\
+MALLOC guard page                    16K\
+STACK GUARD                        56.0M\
+Stack                              8192K\
+VM_ALLOCATE                           8K\
+__CI_BITMAP                          80K\
+__DATA                             21.7M\
+__IMAGE                             528K\
+__LINKEDIT                        118.5M\
+__TEXT                            206.0M\
+__UNICODE                           544K\
+shared memory                        12K\
+===========                      =======\
+TOTAL                             500.2M\
+\
+Model: MacPro3,1, BootROM MP31.006C.B05, 8 processors, Quad-Core Intel Xeon, 3.2 GHz, 16 GB, SMC 1.25f4\
+Graphics: NVIDIA GeForce 8800 GT, NVIDIA GeForce 8800 GT, PCIe, 512 MB\
+Memory Module: DIMM Riser B/DIMM 1, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser B/DIMM 2, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser A/DIMM 1, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser A/DIMM 2, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser B/DIMM 3, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser B/DIMM 4, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser A/DIMM 3, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Memory Module: DIMM Riser A/DIMM 4, 2 GB, DDR2 FB-DIMM, 800 MHz, 0x802C, 0x3138484632353637324A4438304545314434\
+Bluetooth: Version 4.0.3f12, 2 service, 18 devices, 1 incoming serial ports\
+Network Service: Ethernet 1, Ethernet, en0\
+PCI Card: NVIDIA GeForce 8800 GT, sppci_displaycontroller, Slot-1\
+Serial ATA Device: Hitachi HDS721075KLA360, 750.16 GB\
+Serial ATA Device: Hitachi HDS721075KLA360, 750.16 GB\
+Parallel ATA Device: PIONEER DVD-RW  DVR-112D\
+USB Device: Portable USB 3.0 Drive, 0x18a5, 0x022e, 0xfd200000 / 8\
+USB Device: hub_device, apple_vendor_id, 0x912f, 0xfd400000 / 3\
+USB Device: Keyboard Hub, apple_vendor_id, 0x1006, 0xfd430000 / 6\
+USB Device: Apple Keyboard, apple_vendor_id, 0x0250, 0xfd432000 / 7\
+USB Device: Apple Cinema HD Display, apple_vendor_id, 0x9221, 0xfd420000 / 4\
+USB Device: Photosmart C8100 series, 0x03f0  (Hewlett Packard), 0x6411, 0xfd300000 / 2\
+USB Device: Bluetooth USB Host Controller, apple_vendor_id, 0x8206, 0x5d200000 / 2\
+FireWire Device: built-in_hub, 800mbit_speed\
+FireWire Device: iSight, Apple Computer, Inc., 200mbit_speed\
+FireWire Device: unknown_device, unknown_speed\
+}
