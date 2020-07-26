@@ -106,32 +106,37 @@ def blkflow(f1,f2,rbndx,pivdict,ip=None):
     rmaxdisp  = pivdict['of_rmaxdisp']
     highp     = pivdict['of_highp']
     nccth     = pivdict['of_nccth']
-    hrsc      = pivdict['of_hrsc']
-
+    hrsc     = pivdict['of_hrsc']
+    #highp=True
     # Stage 1. 
     haveip = True 
     if ( compat.checkNone(ip) ): 
         [ip,tinac,cmin] = pivir.irssda(f1,f2,rbndx,maxdisp,pivdict)
         haveip = False
-    
-    pmaxdisp = rmaxdisp
+	iip=ip;iinac=tinac;icmax=cmin
 
+    pmaxdisp = rmaxdisp
+	
     # Stage 2.
     [ip,tinac,cmax] = pivir.irncc(f1,f2,rbndx,pmaxdisp,pivdict,ip)
     if ( compat.checkNone(ip) ):
         pmaxdisp = maxdisp
     else:
         pmaxdisp = rmaxdisp
-    
+    #if ( ( cmax < nccth ) or ( tinac>=20 ) or ( not haveip ) ):
     if ( ( cmax < nccth ) and ( hrsc or not haveip ) ):
         [p,inac] = pivir.irsctxt(f1,f2,rbndx,maxdisp,pivdict)
-    
+	if isnan(p[0]):
+		print "using irsctxt, p,inac:",p,inac
+        #print "using irsctxt, dy in p nan is",isnan(p[0])
+	#print "stage2,ptv" 
         if ( not compat.checkNone(p) ):
+	    #print "return from ptv,inac,cmax=",inac,cmax
             return [p,inac,-1.]
                 
     # Stage 3.
     if ( highp ):
-        [p,inac] = pivir.irlk(f1,f2,prbndx,pmaxdisp,pivdict,1.,ip)
+        [p,inac] = pivir.irlk(f1,f2,rbndx,pmaxdisp,pivdict,1.,ip)
         if ( ( compat.checkNone(p) ) or ( ( inac > 0 ) and ( tinac == 0 ) ) ):
             if ( not compat.checkNone(ip) ):
                 p    = ip
@@ -141,7 +146,13 @@ def blkflow(f1,f2,rbndx,pivdict,ip=None):
 
         return [p,inac,-1.]
     else:
+	#if tinac>0:
+		#print "return from ncc,inac, cmax=",tinac,cmax
         return [ip,tinac,cmax]
+	#if (tinac > 0 and haveip == False):
+	#	return [iip,iinac,icmax]
+	#else:
+	#	return [ip,tinac,cmax]
 
         
 #################################################################
@@ -242,7 +253,7 @@ def ofcomp(f1,f2,pivdict):
 
             # Register the block.
             [p,inac,cmax] = blkflow(f1,f2,prbndx,pivdict)
-
+	    path=""
             if ( bsdiv > 1 ):
                 for hm in range(bsdiv):
                     hprbndx[0,0] = prbndx[0,0] +hm*hbso[0]
@@ -264,30 +275,34 @@ def ofcomp(f1,f2,pivdict):
                                 ofdx[mndx, nndx]   = p[1]
                                 if ( lowcmx ):
                                     ofinac[mndx, nndx] = -100. -hinac
+				    path = "path1"
                                 else:
                                     ofinac[mndx, nndx] = 100. +hinac
-                                    
+                                    path = "path2"
                                 ofcmax[mndx, nndx] = cmax
                             else:
                                 ofdy[mndx, nndx]   = hp[0]
                                 ofdx[mndx, nndx]   = hp[1]
                                 ofinac[mndx, nndx] = hinac                            
                                 ofcmax[mndx, nndx] = hcmax
+				path = "path3"
                         else:
                             ofdy[mndx, nndx]   = p[0]
                             ofdx[mndx, nndx]   = p[1]
                             ofinac[mndx, nndx] = inac
                             ofcmax[mndx, nndx] = cmax
+			    path = "path4"
+			#if ofinac[mndx, nndx]>0:
+                		#print "inaccruate! inac,cmax,path=",ofinac[mndx, nndx],ofcmax[mndx, nndx],path
             else:
                 ofdy[m,n]   = p[0]
                 ofdx[m,n]   = p[1]
                 ofinac[m,n] = inac
                 ofcmax[m,n] = cmax
-
+		path = "path5"
             if ( int(10*bn/ltnblks) > tpc ):
                 tpc = tpc +1
                 print " |  " + str(tpc*10) + "% complete"
-
     cmax = ofcmax[ofcmax > 0.]
     print " | NCC CMAX MEAN: %f, STDDEV %f" % (cmax.mean(),cmax.std())
 

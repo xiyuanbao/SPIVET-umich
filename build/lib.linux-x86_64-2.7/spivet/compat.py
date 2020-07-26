@@ -17,11 +17,18 @@ http://www.gnu.org/copyleft/gpl.html
 Description:
     Compatibility fix for python 2.7.
 """
-# return True if a list or ndarray has None item, or x is None.
+import numpy as np
+
+# return True if a list or ndarray has None item, or x is None, or np.nan!.
 # Input could be int/float,list,string, ndarray and None. 
 def checkNone(x):
     try:
-        result = not all(x)
+        result1 = not all(x)# True if None in a list or ndarray
+	try:
+		result2 = np.isnan(np.min(x))# True if np.nan in a list or ndarray
+	except:
+		result2= False #with flexible type like String, do not check nan
+	result = result1 or result2
     except:
-        result= x is None
+        result= x is None or x is np.nan
     return result
