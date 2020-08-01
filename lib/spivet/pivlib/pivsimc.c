@@ -1600,7 +1600,7 @@ SimRectPlanarSurf_intensity(SimRectPlanarSurf *self,PyObject *args) {
     if ( (fpix[i] < 1.) || (fpix[i] >= self->npc[i] -1) )
       return Py_BuildValue("d",0.);
   }
-  PyRun_SimpleString("import sys;sys.path.append('/home/xbao/.conda/envs/piv1.0/lib/python2.7/site-packages/spivet/pivlib')");
+  PyRun_SimpleString("import sys;sys.path.append('/home/xbao/.conda/envs/new_piv1.0/lib/python2.7/site-packages/spivet/pivlib')");
   mod     = PyImport_ImportModule("pivutil");
   pxshift = PyObject_GetAttrString(mod,"pxshift");
 

@@ -135,7 +135,7 @@ def irlk(f1,f2,rbndx,maxdisp,pivdict,rfactor=1.,pinit=None):
             dp   = sign(dp)*array(maxdisp)
             break
             
-        if ( ( not compat.checkNone(it > 0 ) or ( pinit) ) ):
+        if ( (it > 0 ) or not compat.checkNone(pinit) ):
             imbfr = pivutil.imshift(f1,rbndx,ip+dp,imthd,iedge)
         else:
             imbfr = f1[bsndx[0]:bendx[0],bsndx[1]:bendx[1]]

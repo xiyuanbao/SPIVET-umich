@@ -30,8 +30,9 @@ Description:
 #include <mkl_cblas.h>
 typedef MKL_INT lpk_int;
 //#include <clapack.h>
+//#include <lapacke/lapacke.h>
 //#include <cblas.h>
-
+//typedef lapack_int lpk_int;
 //typedef __CLPK_integer lpk_int;
 
 //
