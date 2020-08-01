@@ -3558,7 +3558,8 @@ class loop_epoch(spivetstep):
                             loadFactor=nwsconf.loadFactor,
                             accumulator=self.__accumulator__)
             else:
-                cnt = 0
+		cnt = 0
+                #cnt = 0
                 for crg in grp:   
                     erslt = _loop_epoch_worker(crg,self.m_wrkrstepsvn)
                     self.__accumulator__([[cnt,erslt]])

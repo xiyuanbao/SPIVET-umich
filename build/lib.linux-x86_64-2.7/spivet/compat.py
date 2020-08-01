@@ -19,8 +19,41 @@ Description:
 """
 import numpy as np
 
-# return True if a list or ndarray has None item, or x is None, or np.nan!.
-# Input could be int/float,list,string, ndarray and None. 
+def checkNone(x):
+    """
+    return True if a list or ndarray has None item, or x is None, or np.nan!.
+    Input could be int/float,list,string, ndarray, a function, and None.
+    """
+    if x is None:
+        return True
+
+    else:
+        try:
+
+                listlike = x[0]
+                #result = not all(x) #does not work because of 0
+                for item in x:
+                        if item is None:
+                                return True
+
+                try:
+                        minx = np.min(x)
+                        result = np.isnan(minx) or np.isinf(minx)
+                        return result
+                except:
+
+                        return result
+        except:
+                try:
+
+                        result = np.isnan(x) or np.isinf(x)
+                        return result
+                except:
+                        return False
+
+
+
+""" 
 def checkNone(x):
     try:
         result1 = not all(x)# True if None in a list or ndarray
@@ -32,3 +65,4 @@ def checkNone(x):
     except:
         result= x is None or x is np.nan
     return result
+"""

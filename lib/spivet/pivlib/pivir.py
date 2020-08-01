@@ -135,7 +135,7 @@ def irlk(f1,f2,rbndx,maxdisp,pivdict,rfactor=1.,pinit=None):
             dp   = sign(dp)*array(maxdisp)
             break
             
-        if ( ( not compat.checkNone(it > 0 ) or ( pinit) ) ):
+        if ( (it > 0 ) or (not compat.checkNone( pinit) ) ):
             imbfr = pivutil.imshift(f1,rbndx,ip+dp,imthd,iedge)
         else:
             imbfr = f1[bsndx[0]:bendx[0],bsndx[1]:bendx[1]]
@@ -151,10 +151,6 @@ def irlk(f1,f2,rbndx,maxdisp,pivdict,rfactor=1.,pinit=None):
         dp    = dp +rfactor*ddp
 
         it = it +1
-    if isnan(ip[0]):
-	print "irlk ip isnan\n"
-    if isnan(dp[0]):
-	print "irlk dp isnan\n"     
     return [ip +dp, inac]
 
 
@@ -243,10 +239,6 @@ def irncc(f1,f2,rbndx,maxdisp,pivdict,pinit=None):
     if ( ( mxndx[0] == 0 ) or ( mxndx[0] == prsize[0] -1 ) ):
         p[0] = ip[0] +mxndx[0] -maxdisp[0]
         inac = irinac['irncc_maxdisp']
-	if isnan(p[0]):
-		print "irncc nan1\n"
-		print "ip[0] +mxndx[0] -maxdisp[0]:",ip[0] ,mxndx[0] ,maxdisp[0]
-		print "pinit=",pinit,"is None:",compat.checkNone(pinit)
     else:
         svec = pivutil.gfit(
             coeff[(mxndx[0]-1):(mxndx[0]+2),mxndx[1]],
@@ -255,9 +247,6 @@ def irncc(f1,f2,rbndx,maxdisp,pivdict,pinit=None):
         if ( compat.checkNone(svec) ):
             return [None,irinac['irncc_gfit'],0.]
         p[0] = ip[0] +mxndx[0] +svec[1] -maxdisp[0]
-	if isnan(p[0]):
-                print "irncc nan2\n"
-		print "ip[0] +mxndx[0] +svec[1] -maxdisp[0]:",ip[0] ,mxndx[0] ,svec[1] ,maxdisp[0]
     if ( ( mxndx[1] == 0 ) or ( mxndx[1] == prsize[1] -1 ) ):
         p[1] = ip[1] +mxndx[1] -maxdisp[1]
         inac = irinac['irncc_maxdisp']
@@ -368,9 +357,6 @@ def irsctxt(f1,f2,rbndx,maxdisp,pivdict):
     wpts = tpw.xfrm(tpts)
     dlta = wpts -tpts
     p    = dlta.mean(0)
-    if isnan(p[0]):
-	print "irsctxt nan1\n"
-	print "wpts is nan:",isnan(sum(wpts))
     if ( ( p > maxdisp ).any() ):
         inac = irinac['irsctxt_maxdisp']
     

@@ -116,24 +116,22 @@ def blkflow(f1,f2,rbndx,pivdict,ip=None):
 	iip=ip;iinac=tinac;icmax=cmin
 
     pmaxdisp = rmaxdisp
-	
     # Stage 2.
     [ip,tinac,cmax] = pivir.irncc(f1,f2,rbndx,pmaxdisp,pivdict,ip)
     if ( compat.checkNone(ip) ):
         pmaxdisp = maxdisp
     else:
         pmaxdisp = rmaxdisp
-    #if ( ( cmax < nccth ) or ( tinac>=20 ) or ( not haveip ) ):
     if ( ( cmax < nccth ) and ( hrsc or not haveip ) ):
         [p,inac] = pivir.irsctxt(f1,f2,rbndx,maxdisp,pivdict)
-	if isnan(p[0]):
-		print "using irsctxt, p,inac:",p,inac
-        #print "using irsctxt, dy in p nan is",isnan(p[0])
-	#print "stage2,ptv" 
         if ( not compat.checkNone(p) ):
-	    #print "return from ptv,inac,cmax=",inac,cmax
-            return [p,inac,-1.]
-                
+            #return [p,inac,-1.]
+	
+	    if (haveip == False and 1-icmax/100.>nccth and any(abs(array(iip)-array(p))>array(rmaxdisp)*1.0)):
+		return [iip,iinac,1-icmax/100.]
+	    else:
+		return [p,inac,-1.]
+        
     # Stage 3.
     if ( highp ):
         [p,inac] = pivir.irlk(f1,f2,rbndx,pmaxdisp,pivdict,1.,ip)
@@ -146,14 +144,14 @@ def blkflow(f1,f2,rbndx,pivdict,ip=None):
 
         return [p,inac,-1.]
     else:
-	#if tinac>0:
-		#print "return from ncc,inac, cmax=",tinac,cmax
-        return [ip,tinac,cmax]
-	#if (tinac > 0 and haveip == False):
-	#	return [iip,iinac,icmax]
-	#else:
-	#	return [ip,tinac,cmax]
-
+        #return [ip,tinac,cmax]
+	
+	if (tinac > 0 and haveip == False):
+		#print "ssda,icmax=",icmax
+		return [iip,iinac,1-icmax/100.]
+	else:
+		return [ip,tinac,cmax]
+	
         
 #################################################################
 #
