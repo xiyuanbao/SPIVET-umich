@@ -3889,12 +3889,12 @@ class loop_epoch(spivetstep):
                         p.start()
 			#p.join()
 			procs.append(p)
-		#assemble_flag = all(q.get())
+		assemble_flag = all(q.get())
 		[p.join() for p in procs]
 
-	
+		self.m_assemble = assemble_flag
 		
-
+		
 
 		'''
 		#Xiyuan, start of STDOUT-Ecnt
