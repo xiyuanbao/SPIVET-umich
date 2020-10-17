@@ -55,13 +55,8 @@ from scipy import interpolate
 from spivet import pivlib, tlclib, spivetconf
 from spivet.steputil import _parsefn, _fretrieve
 import sys, os, urlparse
-
 from spivet import compat
-#from spivet.pivlib import pivutil
-import openpiv.gpu_process
-#import numpy as np
-#from spivet.pivlib.pivdata import *
-import time
+
 """
 Distinction between configuration and carriage parameters:
   - The following conceptual ideas govern the logic behind whether a step
@@ -75,56 +70,9 @@ Distinction between configuration and carriage parameters:
     modified by the step, and could conceivably be used for consecutive
     calls to the step).
 """
-#Xiyuan: Solve "Can't pickle instancemethod"
-import copy_reg
-import types
-
-def _pickle_method(m):
-    if m.im_self is None:
-        return getattr, (m.im_class, m.im_func.func_name)
-    else:
-        return getattr, (m.im_self, m.im_func.func_name)
-
-copy_reg.pickle(types.MethodType, _pickle_method)
 
 
-def global_accumulator(m_accobpath,acc):
-    """
-    This function stores results from eachElem() as they arrive.
-    NOTE: The NWS documentation (for 1.6.3) is incorrect.  The
-    first argument to the accumulator is the index and the second
-    is the result.
-    """
-    # Initialization.
-    m_assemble=1
-    obpath = m_accobpath
-    print "Here!"
-    # Process the results.  The result is expected to be a list as
-    # returned by _loop_epoch_worker().
-    for a in acc:
-        tn = a[0]
-        r  = a[1]
-
-        if ( r[0] > 0 ):
-            # Had an exception.
-            print "----- FAILED: E%i -----" % tn
-            print r[1]
-            print "-----"
-	    m_assemble = 0
-        else:
-            oepdp = "%s/PIVDATA-E%i.ex2" % (obpath,tn)
-            print "ACCUMULATING: E%i" % tn
-            r[1].save(oepdp)
-
-        fh = open("%s/STDOUT-E%i" % (obpath,tn),'w')
-        fh.write(r[2])
-        fh.close()
-
-        fh = open("%s/STDERR-E%i" % (obpath,tn),'w')
-        fh.write(r[3])
-        fh.close()
-    return m_assemble
-################################################################
+#################################################################
 #
 def enable_user_steps():
     """
@@ -633,7 +581,6 @@ class dewarpimg(spivetstep):
         imgprms  = carriage['imgprms']
         imgchnls = carriage['imgchnls']
         wicsp    = self.m_config['wicsp']
-        
         if ( self.m_config.has_key('lbpath') ):
             lbpath = self.m_config['lbpath']
         else:
@@ -695,7 +642,10 @@ class dewarpimg(spivetstep):
                         timg[padpix:(padpix+wpxdim[0]),
                              padpix:(padpix+wpxdim[1])] = simgchnls[cam][frm][c]
                         simgchnls[cam][frm][c] = timg
-
+			#Xiyuan:rotate cal
+			if (self.m_config.has_key('rotate_cal')):
+				if (self.m_config['rotate_cal']):
+					simgchnls[cam][frm][c] = rot90(timg,2)
         carriage['imgchnls'] = simgchnls
         carriage['imgprms']  = simgprms
 
@@ -870,7 +820,9 @@ class oflow2d(spivetstep):
             pad = imgprms[0][0]['padpix']
             
             [cellsz,origin] = csznorgn(zcellsz,pivdict,pad,False)        
-        
+
+            #Xiyuan
+            print "cellsz,origin",cellsz,origin 
             pd = pivlib.PIVData(cellsz,origin,"PIVDATA")
             pd.append(pe)
 
@@ -1093,16 +1045,11 @@ class refine2dof(spivetstep):
         
         # Compute image region rbndx corresponding to crbndx.
         rrbndx = rbndx.copy()
-        ebsize = (bsize -bolap)/bsdiv#bsdiv will not be used together with bsize>1 in ofcomp
-	'''
+        ebsize = (bsize -bolap)/bsdiv
+            
         rrbndx[:,0] = rbndx[:,0] +crbndx[:,0]*ebsize -pxorgn
         rrbndx[:,1] = rbndx[:,0] +crbndx[:,1]*ebsize -pxorgn
-        '''
-	#Xiyuan:For overlapped cases, if keep crsize & tnrcells, we need to
-	#compensate for the initial position 
-	rrbndx[:,0] = rbndx[:,0] +crbndx[:,0]*ebsize -pxorgn 
-        rrbndx[:,1] = rbndx[:,0] +crbndx[:,1]*ebsize -pxorgn +bolap
- 
+        
         # Compute extended rrbndx.  The extended region contains a border of
         # of_maxdisp +of_rmaxdisp pixels.  
         mxdsp   = maxdisp +rmaxdisp
@@ -1358,10 +1305,6 @@ class refine2dof(spivetstep):
             self.m_config['pifltr'] = pifltr
         else:
             fimgs = imgs
-	#Xiyuan: remove brightness of the padding pixels
-	for c in xrange(ncam):
-            for f in xrange(2):
-		fimgs[c][f][imgs[c][f]==0] = 0
 
         # Dump debug images.
         if ( not compat.checkNone(dbgpath) ):
@@ -1429,8 +1372,7 @@ class refine2dof(spivetstep):
 
             # Due to the memory intensive nature of TPS, the image region
             # to be warped needs to be broken into chunks.
-            #Xiyuan: increase from 10000
-            csz = 1000000
+            csz = 10000
             ncit = int(ceil(xrrfn.shape[0]/float(csz)))
     
             # Setup image rbndx.
@@ -1480,14 +1422,14 @@ class refine2dof(spivetstep):
                                    vmin=0.,vmax=1.)
                                 
                 # Compute flow.
- 
                 [crc,inac,cmax] = pivlib.ofcomp(pf0[cam],
                                                 fimgs[cam][1],
                                                 pivdict)
+
                 # Filter the correction and apply.
                 crc = self.__cfilter__(crc, cfltrprm)
-                
-		cmag = crc[1:3,...].reshape([2,tnrcells])
+
+                cmag = crc[1:3,...].reshape([2,tnrcells])
                 cmag = sqrt( (cmag*cmag).sum(0) )
                 cmmx = cmag.max()
                 print "IT%i MAX |CRC|: %f" % (it,cmmx)
@@ -1551,7 +1493,7 @@ class refine2dof(spivetstep):
                         wxrrfn   = rprms['wxrrfn']
                         bccrds   = rprms['bccrds']
                         
-                        #csz = 10000, Xiyuan
+                        csz = 10000
                         ncit = int(ceil(xrrfn.shape[0]/float(csz)))
                 
                         var = rvar[:,:,
@@ -2248,7 +2190,9 @@ class loop_plane(spivetstep):
         lfpath   = carriage['lfpath']
 
         steps = self.m_config['steps']
-
+	#Xiyuan:print steps
+	#print "stepsplane:",steps
+	
         # Create the step objects and store the config dictionaries.
         steplst = []
         for step in steps:
@@ -2308,13 +2252,17 @@ class loop_plane(spivetstep):
                 prms[i] = "%s/%s" % (bimgurl,prms[i])            
 
             carriage['imgurls'] = prms[0:-1]
-	    #Xiyuan
+
+	    ii=0
+
             for step in steplst:
-		startT=time.time()
                 step.setCarriage(carriage)
                 step.execute()
-		print "Current step runtime:",time.time()-startT	
-
+		#Xiyuan
+		#print "finished step:", steps[ii][0] 
+		ii=ii+1
+	#Xiyuan:skip the following part to get gcrg
+'''	
             tpd    = carriage['pivdata']
             varnms = tpd[0].keys()
             if ( s == 0 ):
@@ -2339,7 +2287,7 @@ class loop_plane(spivetstep):
                 pe[vn][:,s,:,:] = tpd[0][vn][:,0,:,:]
 
         carriage['epivdata'] = epd
-
+'''
 
 #################################################################
 #
@@ -3125,7 +3073,8 @@ def _loop_epoch_cleanupgws(wrkrtdirvn):
     os.chdir("../")
     shutil.rmtree(globals()[wrkrtdirvn])
 
-def _loop_epoch_worker_original(carriage,wrkrstepsvn):
+
+def _loop_epoch_worker(carriage,wrkrstepsvn):
     """
     Performs the loop work. sflg will be set if an exception is thrown.
     If an exception is thrown, then sepdvn or epivdata will be set
@@ -3149,131 +3098,20 @@ def _loop_epoch_worker_original(carriage,wrkrstepsvn):
 
     # Initialization.
     epdfn = "PIVDATA.ex2"
+    #Xiyuan: commented 
+    #lsofn      = "stdout"
+    #sys.stdout = open(lsofn,'w', 0)
 
-    lsofn      = "stdout"
-    sys.stdout = open(lsofn,'w', 0)
-
-    lsefn      = "stderr"
-    sys.stderr = open(lsefn,'w', 0)
-
-    rhost = socket.gethostname()
-    print "Running on: %s" % rhost
-
-    steps = globals()[wrkrstepsvn]
-
-    try:
-        rnk = SleighRank
-        parallel = True
-        print "Running remotely."
-    except:
-        print "Running locally."
-        parallel = False
-
-    try:
-        if ( parallel ):
-            svnext = "%i-%i" % (SleighRank,random.randint(0,1000000))
-
-        # Create the step objects and store the config dictionaries.
-        steplst = []
-        for step in steps:
-            cname   = step[0]
-            modname = step[1]
-            config  = step[2]
-
-            __import__(modname)
-            module = sys.modules[modname]
-
-            cobj = module.__dict__[cname]()
-            cobj.setConfig(config)
-
-            steplst.append(cobj)
-
-        # Execute the steps.
-        for step in steplst:
-            step.setCarriage(carriage)
-            step.execute()
-
-        epd = carriage['epivdata']
-        if ( parallel ):
-            # Write the PIVDATA object to a file and then load in directly
-            # into the network space.  This is necessary to prevent Python 
-            # ASCII serialization of the PIVDATA object (which can cause the 
-            # process to run out of memory).
-            epd.save(epdfn)
-
-            sepdvn = "PIVDATA-%s-%s" % (rhost,svnext)
-            SleighUserNws.declare(sepdvn,'single')
-            fh = open(epdfn,'rb')
-            SleighUserNws.storeFile(sepdvn,fh)
-            fh.close()
-
-        sflg = 0
-        if ( parallel ):
-            pdo = sepdvn
-        else:
-            pdo = epd
-
-    except KeyboardInterrupt:
-        # Need to handle Ctrl-C explicitly and die.
-        raise
-
-    except:
-        sflg = 1
-        traceback.print_exc(file=sys.stderr)
-        pdo  = traceback.format_exc()
-
-    # Close out the local logs.
-    sys.stdout.close()
-    sys.stdout = sys.__stdout__
-
-    sys.stderr.close()
-    sys.stderr = sys.__stderr__
-
-    # Load the log files.
-    fh      = open(lsofn,'r')
-    stdoutf = fh.read()
-    fh.close()
-
-    fh      = open(lsefn,'r')
-    stderrf = fh.read()
-    fh.close()
-###############################################
-#Xiyuan: add cnt and obpath
-def _loop_epoch_worker_pool(carriage,wrkrstepsvn,cnt,obpath):
-    """
-    Performs the loop work. sflg will be set if an exception is thrown.
-    If an exception is thrown, then sepdvn or epivdata will be set
-    to the traceback text.
-    
-    If running in parallel, stores a PIVDATA object file directly
-    to the NWS.  Returns [sflg,sepdvn,stdout,stderr] where
-        sflg ------ Success flag.  0 if successfull, non-zero otherwise.
-        sepdvn ---- The variable name on the NWS where the PIVDATA
-                    is stored.
-        stdout ---- The stdout transcript.
-        stderr ---- The stderr transcript.
-        
-    If running locally, returns [sflg,epivdata,stdout,stderr] where
-        sflg ------ Success flag.  0 if successfull, non-zero otherwise.
-        epivdata -- A valid PIVData object.
-        stdout ---- The stdout transcript.
-        stderr ---- The stderr transcript.        
-    """
-    import socket, traceback
-
-    # Initialization.
-    epdfn = "PIVDATA.ex2"
-    
-    lsofn      = "stdout"
-    sys.stdout = open(lsofn,'w', 0)
-
-    lsefn      = "stderr"
-    sys.stderr = open(lsefn,'w', 0)
+    #lsefn      = "stderr"
+    #sys.stderr = open(lsefn,'w', 0)
 
     rhost = socket.gethostname()
     print "Running on: %s" % rhost
     
     steps = globals()[wrkrstepsvn] 
+    #	Xiyuan:print steps
+    #print "stepsepoch:",steps
+
 
     try:
         rnk = SleighRank
@@ -3301,11 +3139,14 @@ def _loop_epoch_worker_pool(carriage,wrkrstepsvn,cnt,obpath):
             cobj.setConfig(config)
     
             steplst.append(cobj)
-   
+    
         # Execute the steps.
         for step in steplst:
             step.setCarriage(carriage)
             step.execute()
+   	    #Xiyuan:save current plane last raw carriage
+	    gcrg = carriage
+	    print "epochcrg"
  
         epd = carriage['epivdata']
         if ( parallel ):
@@ -3337,147 +3178,29 @@ def _loop_epoch_worker_pool(carriage,wrkrstepsvn,cnt,obpath):
         pdo  = traceback.format_exc()
        
     # Close out the local logs.
-    sys.stdout.close()
-    sys.stdout = sys.__stdout__
+    #sys.stdout.close()
+    #sys.stdout = sys.__stdout__
     
-    sys.stderr.close()
-    sys.stderr = sys.__stderr__
+    #sys.stderr.close()
+    #sys.stderr = sys.__stderr__
     
     # Load the log files.
-    fh      = open(lsofn,'r')
-    stdoutf = fh.read()
-    fh.close()
+    #fh      = open(lsofn,'r')
+    #stdoutf = fh.read()
+    #fh.close()
 
-    fh      = open(lsefn,'r')
-    stderrf = fh.read()
-    fh.close()
-    #Xiyuan:add cnt
-    #return obpath,[[cnt,[sflg,pdo,stdoutf,stderrf]]]
-    return global_accumulator(obpath,[[cnt,[sflg,pdo,stdoutf,stderrf]]])
+    #fh      = open(lsefn,'r')
+    #stderrf = fh.read()
+    #fh.close()
     
-#################################################################
-def _loop_epoch_worker_spawn(carriage,wrkrstepsvn,cnt,obpath,q):
-    """
-    Performs the loop work. sflg will be set if an exception is thrown.
-    If an exception is thrown, then sepdvn or epivdata will be set
-    to the traceback text.
+    #return [sflg,pdo,stdoutf,stderrf]
     
-    If running in parallel, stores a PIVDATA object file directly
-    to the NWS.  Returns [sflg,sepdvn,stdout,stderr] where
-        sflg ------ Success flag.  0 if successfull, non-zero otherwise.
-        sepdvn ---- The variable name on the NWS where the PIVDATA
-                    is stored.
-        stdout ---- The stdout transcript.
-        stderr ---- The stderr transcript.
-        
-    If running locally, returns [sflg,epivdata,stdout,stderr] where
-        sflg ------ Success flag.  0 if successfull, non-zero otherwise.
-        epivdata -- A valid PIVData object.
-        stdout ---- The stdout transcript.
-        stderr ---- The stderr transcript.        
-    """
-    import socket, traceback
-    import openpiv.gpu_process
+    #Xiyuan: uncomment this to assgin gcrg
+    #gcrg=0
+    return [sflg,pdo,gcrg]
 
-    # Initialization.
-    epdfn = "PIVDATA.ex2"
-
-    lsofn      = "stdout"
-    sys.stdout = open(lsofn,'w', 0)
-
-    lsefn      = "stderr"
-    sys.stderr = open(lsefn,'w', 0)
-
-    rhost = socket.gethostname()
-    print "Running on: %s" % rhost
-
-    steps = globals()[wrkrstepsvn]
-
-    try:
-        rnk = SleighRank
-        parallel = True
-        print "Running remotely."
-    except:
-        print "Running locally."
-        parallel = False
-
-    try:
-        if ( parallel ):
-            svnext = "%i-%i" % (SleighRank,random.randint(0,1000000))
-
-        # Create the step objects and store the config dictionaries.
-        steplst = []
-        for step in steps:
-            cname   = step[0]
-            modname = step[1]
-            config  = step[2]
-
-            __import__(modname)
-            module = sys.modules[modname]
-
-            cobj = module.__dict__[cname]()
-            cobj.setConfig(config)
-
-            steplst.append(cobj)
-
-        # Execute the steps.
-        for step in steplst:
-            step.setCarriage(carriage)
-            step.execute()
-
-        epd = carriage['epivdata']
-        if ( parallel ):
-            # Write the PIVDATA object to a file and then load in directly
-            # into the network space.  This is necessary to prevent Python 
-            # ASCII serialization of the PIVDATA object (which can cause the 
-            # process to run out of memory).
-            epd.save(epdfn)
-
-            sepdvn = "PIVDATA-%s-%s" % (rhost,svnext)
-            SleighUserNws.declare(sepdvn,'single')
-            fh = open(epdfn,'rb')
-            SleighUserNws.storeFile(sepdvn,fh)
-            fh.close()
-        sflg = 0
-        if ( parallel ):
-            pdo = sepdvn
-        else:
-            pdo = epd
-
-    except KeyboardInterrupt:
-        # Need to handle Ctrl-C explicitly and die.
-        raise
-
-    except:
-        sflg = 1
-        traceback.print_exc(file=sys.stderr)
-        pdo  = traceback.format_exc()
-
-    # Close out the local logs.
-    sys.stdout.close()
-    sys.stdout = sys.__stdout__
-
-    sys.stderr.close()
-    sys.stderr = sys.__stderr__
-
-    # Load the log files.
-    fh      = open(lsofn,'r')
-    stdoutf = fh.read()
-    fh.close()
-
-    fh      = open(lsefn,'r')
-    stderrf = fh.read()
-    fh.close()
-    #Xiyuan:add cnt
-    #return obpath,[[cnt,[sflg,pdo,stdoutf,stderrf]]]
-    assemble_flag=global_accumulator(obpath,[[cnt,[sflg,pdo,stdoutf,stderrf]]])
-    q.put(assemble_flag)
-    
 #################################################################
 #
-
-
-
 class loop_epoch(spivetstep):
     """
     STEP: Loop over Epochs.
@@ -3592,8 +3315,9 @@ class loop_epoch(spivetstep):
         self.m_sleigh = None 
         
         self.m_assemble = True   # False when assembling should be skipped.
-    #Xiyuan
-    @staticmethod    
+	#Xiyuan: add temporary carriage external port
+	self.m_crg = {}
+        
     def __accumulator__(self,acc):
         """
         This function stores results from eachElem() as they arrive.
@@ -3609,7 +3333,7 @@ class loop_epoch(spivetstep):
             parallel = True
         
         obpath = self.m_accobpath
-        print "Here I am!" 
+        
         # Process the results.  The result is expected to be a list as
         # returned by _loop_epoch_worker().
         for a in acc:
@@ -3858,54 +3582,19 @@ class loop_epoch(spivetstep):
                             loadFactor=nwsconf.loadFactor,
                             accumulator=self.__accumulator__)
             else:
-
-		#Xiyuan:use a fork of multiprocessing to parallelize:dill/pickle error
-		#callback is not as expected, add accumulator to epoch_worker	
-		from multiprocessing import Pool,Process, Queue
-		import multiprocessing
-		#multiprocess.set_start_method('spawn')
-		#The forked parallel works for CPU
-		'''
-		myPool = Pool(4)
-			
-		procs=[]
-		for cnt,crg in zip(range(len(grp)),grp):
-			r=myPool.apply_async(_loop_epoch_worker_pool,(crg,self.m_wrkrstepsvn,cnt,self.m_accobpath))
-			procs.append(r)
-		myPool.close()
-		myPool.join()
-		assemble_flag=1
-		for r in procs:
-			assemble_flag=assemble_flag*r.get()
-			#global_accumulator(result)
-	        #[print r.get() for r in procs]	
-		'''
-
-		#Spawn processes
-		q = Queue()
-		procs=[]
-		for cnt,crg  in zip(range(len(grp)),grp):
-                        p=Process(target = _loop_epoch_worker_spawn, args=(crg,self.m_wrkrstepsvn,cnt,self.m_accobpath,q))
-                        p.start()
-			#p.join()
-			procs.append(p)
-		#assemble_flag = all(q.get())
-		[p.join() for p in procs]
-
-	
-		
-
-
-		'''
 		#Xiyuan, start of STDOUT-Ecnt
 		cnt = 0
                 #cnt = 0
                 for crg in grp:   
-                    erslt = _loop_epoch_worker_original(crg,self.m_wrkrstepsvn)
+                    erslt = _loop_epoch_worker(crg,self.m_wrkrstepsvn)
+		    #Xiyuan
+		    self.m_crg = erslt[2]
+		    erslt = erslt[:2]
+
                     self.__accumulator__([[cnt,erslt]])
                     
                     cnt = cnt +1
-		'''
+
             if ( self.m_assemble ):
                 epd = self.__assemble__(self.m_accobpath)
                 dpdl.append(epd)

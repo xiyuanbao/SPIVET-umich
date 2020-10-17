@@ -3128,7 +3128,10 @@ def _loop_epoch_worker(carriage,wrkrstepsvn):
         for step in steplst:
             step.setCarriage(carriage)
             step.execute()
-    
+   	#Xiyuan:save current plane last raw carriage
+	self.m_crg = carriage
+	print self.m_crg
+ 
         epd = carriage['epivdata']
         if ( parallel ):
             # Write the PIVDATA object to a file and then load in directly
@@ -3293,6 +3296,8 @@ class loop_epoch(spivetstep):
         self.m_sleigh = None 
         
         self.m_assemble = True   # False when assembling should be skipped.
+	#Xiyuan: add temporary carriage external port
+	self.m_crg = {}
         
     def __accumulator__(self,acc):
         """
@@ -3558,6 +3563,7 @@ class loop_epoch(spivetstep):
                             loadFactor=nwsconf.loadFactor,
                             accumulator=self.__accumulator__)
             else:
+		#Xiyuan, start of STDOUT-Ecnt
 		cnt = 0
                 #cnt = 0
                 for crg in grp:   

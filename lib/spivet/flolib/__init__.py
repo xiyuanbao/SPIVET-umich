@@ -27,7 +27,7 @@ from flovars import vorticity
 
 import flotrace
 from flotrace import svinterp, svcinterp, mpsvtrace, psvtrace, pthtrace, \
-    pthwrite, rpsvtrace, mptwrite, mptassy
+    pthwrite, rpsvtrace, mptwrite, mptassy,mptassmblr
     
 import floftle
 from floftle import ftleinit, ftletrace, ftlecomp

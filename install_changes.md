@@ -739,3 +739,42 @@ Comparison:
 
 
 Success!
+
+-------------------------------------------------------------------------------------------------------------------
+# To get intermediate carriage (frames for loop_plane_worker):
+In `steps.py`:(version saved as crg_steps.py)
+- in `loop_plane.excute`:skip all the lines after `tpd    = carriage['pivdata']`
+- in `_loop_epoch_worker`: comment the redirect to stdout/stderr, save plane carriage as gcrg, return gcrg in the end
+- in 'loop_epoch': add temporary carriage external port `self.m_crg` in `__init__`, unpack `erslt[2]` to `m_crg` in `execute`
+
+# To rotate existing calibration upside down:
+At the end of `dewarpimg`:
+```
+simgchnls[cam][frm][c] = timg
+#Xiyuan:rotate cal
+if (self.m_config.has_key('rotate_cal')):
+                                if (self.m_config['rotate_cal']):
+                                        simgchnls[cam][frm][c] = rot90(timg,2)
+
+```
+
+# To make `mkflatplotmm-anim.py` work:
+add `from flotrace import mptassmblr` in `flolib/__init__.py`
+
+# Problems during generating calibration 
+`pivlib/pivpgcal.py`
+## Float cannot be array index in python 2.7
+Need to force related variable as int in both `pivlib/pivpgcal.py` and `pivlib/pivutil.py`
+## Sometimes cross correlation method finds no intersection 
+(`rv` empty)
+add `EMPTY rv` case
+## also added some debug images
+--------------------------------------------------------------------------------------------------------------------
+# Speed up SPIVET
+## parallel in `ofcomp` failed due to GIL(only 1 CPU is runing)
+failed version saved as `fail_parallel_pivof.py`
+## parallel epoch, like the NetWorkSpace
+We don't want to use NWS because it was last updated in 2007.
+Basically `multiprocessing` is good enough. Both 'apply_async' +`Pool` and 'Process' are implemented. The `call_back` feature somehow will fail silently.
+Expected processing time for 43 planes x 56 epoch: <2 hours
+Till this point, no external module is required.
