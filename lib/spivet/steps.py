@@ -58,7 +58,6 @@ import sys, os, urlparse
 
 from spivet import compat
 #from spivet.pivlib import pivutil
-import openpiv.gpu_process
 #import numpy as np
 #from spivet.pivlib.pivdata import *
 import time
@@ -3377,7 +3376,6 @@ def _loop_epoch_worker_spawn(carriage,wrkrstepsvn,cnt,obpath,q):
         stderr ---- The stderr transcript.        
     """
     import socket, traceback
-    import openpiv.gpu_process
 
     # Initialization.
     epdfn = "PIVDATA.ex2"
