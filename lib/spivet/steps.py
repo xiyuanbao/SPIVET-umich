@@ -3236,6 +3236,8 @@ def _loop_epoch_worker_original(carriage,wrkrstepsvn):
     fh      = open(lsefn,'r')
     stderrf = fh.read()
     fh.close()
+
+    return [sflg,pdo,gcrg]
 ###############################################
 #Xiyuan: add cnt and obpath
 def _loop_epoch_worker_pool(carriage,wrkrstepsvn,cnt,obpath):
